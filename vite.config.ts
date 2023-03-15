@@ -19,6 +19,7 @@ export default defineConfig({
       '@enums': `${path.resolve(dirname, './src/enums/')}`,
       '@hooks': `${path.resolve(dirname, './src/hooks/')}`,
       '@utils': `${path.resolve(dirname, './src/utils/')}`,
+      '@pages': `${path.resolve(dirname, './src/pages/')}`,
     },
   },
 });

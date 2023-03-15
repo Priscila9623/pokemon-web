@@ -24,7 +24,8 @@
       "@custom-types/*": ["custom-types/*"],
       "@enums/*": ["enums/*"],
       "@hooks/*": ["hooks/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@pages/*": ["pages/*"]
     }
   },
   "include": ["src"],

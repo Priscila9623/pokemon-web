@@ -66,6 +66,10 @@
             "group": "internal"
           },
           {
+            "pattern": "@pages/**",
+            "group": "internal"
+          },
+          {
             "pattern": "./*.css",
             "group": "sibling",
             "position": "after"
