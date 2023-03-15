@@ -32,7 +32,45 @@
         "warnOnUnassignedImports": true,
         "groups": ["builtin", "external", "internal", "parent", "sibling"],
         "pathGroupsExcludedImportTypes": ["react"],
-        "pathGroups": []
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin"
+          },
+          {
+            "pattern": "@assets/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@components/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@constants/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@custom-types/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@enums/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@hooks/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "@utils/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "./*.css",
+            "group": "sibling",
+            "position": "after"
+          }
+        ]
       }
     ],
     "import/extensions": ["error", "ignorePackages", { "tsx": "never" }],
