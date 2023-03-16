@@ -1,0 +1,18 @@
+@import '@theme/style';
+
+.Home-teams {
+  margin-top: 40px;
+}
+
+.ant-spin {
+  font-family: $work-sans !important;
+}
+
+.ant-list-item-meta-title {
+  font-size: $size-16 !important;
+}
+
+.ant-list-item-meta-description {
+  font-size: $size-14 !important;
+  color: $gray-light-700 !important;
+}

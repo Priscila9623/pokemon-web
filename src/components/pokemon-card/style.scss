@@ -1,0 +1,41 @@
+@import '@theme/style';
+
+.Pokemon-card {
+  border-radius: 8px;
+  background-color: $yellow-500;
+  &__bg {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    & > img {
+      margin: 20px 20px 0px 10px;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  &--color-yellow {
+    background-color: $yellow-500;
+  }
+  &--color-aqua {
+    background-color: $aqua-500;
+  }
+  &--color-pink {
+    background-color: $pink-500;
+  }
+  &--color-sky-blue {
+    background-color: $sky-blue-500;
+  }
+  &--color-brown {
+    background-color: $brown-500;
+  }
+  &--color-violet {
+    background-color: $violet-500;
+  }
+}
+
+.ant-card {
+  background-color: transparent !important;
+}

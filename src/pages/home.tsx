@@ -1,6 +1,8 @@
 import React from 'react';
 
+import HomeContent from '@components/home';
+
 function Home() {
-  return <div>Home</div>;
+  return <HomeContent />;
 }
 export default Home;
