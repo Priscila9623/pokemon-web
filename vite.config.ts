@@ -21,6 +21,7 @@ export default defineConfig({
       '@utils': `${path.resolve(dirname, './src/utils/')}`,
       '@pages': `${path.resolve(dirname, './src/pages/')}`,
       '@theme': `${path.resolve(dirname, './src/theme/')}`,
+      '@layout': `${path.resolve(dirname, './src/layout/')}`,
     },
   },
 });

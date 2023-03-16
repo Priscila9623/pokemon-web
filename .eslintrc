@@ -74,6 +74,10 @@
             "group": "internal"
           },
           {
+            "pattern": "@layout/**",
+            "group": "internal"
+          },
+          {
             "pattern": "./*.css",
             "group": "sibling",
             "position": "after"
@@ -81,7 +85,11 @@
         ]
       }
     ],
-    "import/extensions": ["error", "ignorePackages", { "tsx": "never" }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      { "ts": "never", "tsx": "never" }
+    ],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   },
   "settings": {
