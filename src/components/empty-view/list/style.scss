@@ -1,0 +1,42 @@
+@import '@theme/style';
+
+.Empty-view-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__icon {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__circle {
+      background-color: $yellow-100;
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      z-index: -1;
+      top: 5%;
+      margin: 0;
+      @media (max-width: $breakpoint-sm) {
+        top: 10%;
+        width: 180px;
+        height: 180px;
+      }
+    }
+    & > img {
+      width: 200px;
+      @media (max-width: $breakpoint-sm) {
+        width: 150px;
+      }
+    }
+  }
+  &__message {
+    font-size: $size-18;
+    color: $black;
+    font-family: $quick-sand;
+    margin-top: 10px;
+  }
+}

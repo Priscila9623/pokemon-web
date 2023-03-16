@@ -1,0 +1,19 @@
+@import '@theme/style';
+
+.Resource-not-found {
+  display: flex;
+  align-items: center;
+  & > img {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+    @media (max-width: $breakpoint-md) {
+      width: 200px;
+      height: 200px;
+    }
+    @media (max-width: $breakpoint-sm) {
+      width: 125px;
+      height: 125px;
+    }
+  }
+}

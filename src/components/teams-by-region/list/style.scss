@@ -1,0 +1,19 @@
+@import '@theme/style';
+
+.Teams-by-region-list {
+  margin-top: 20px;
+  &__share {
+    background-color: $violet-500 !important;
+  }
+  &__edit {
+    background-color: $yellow-500 !important;
+  }
+  &__delete {
+    background-color: $pink-500 !important;
+  }
+}
+
+.ant-list-item-meta-title {
+  font-size: $size-16 !important;
+  font-family: $work-sans !important;
+}
