@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Avatar, List } from 'antd';
+import { List } from 'antd';
 
 import Title from '@components/title';
 
@@ -27,15 +27,9 @@ function Teams() {
       <Title text="Equipos" />
       <List
         dataSource={data}
-        renderItem={(item, index) => (
+        renderItem={(item) => (
           <List.Item>
-            <List.Item.Meta
-              avatar={
-                <Avatar src={`https://joesch.moe/api/v1/random?key=${index}`} />
-              }
-              title={item.title}
-              description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-            />
+            <List.Item.Meta title={item.title} />
           </List.Item>
         )}
       />
