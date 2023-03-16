@@ -1,6 +1,8 @@
 import React from 'react';
 
+import NotFound from '@components/error-view/not-found';
+
 function NoPage() {
-  return <div>404</div>;
+  return <NotFound />;
 }
 export default NoPage;
