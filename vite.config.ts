@@ -20,6 +20,7 @@ export default defineConfig({
       '@hooks': `${path.resolve(dirname, './src/hooks/')}`,
       '@utils': `${path.resolve(dirname, './src/utils/')}`,
       '@pages': `${path.resolve(dirname, './src/pages/')}`,
+      '@theme': `${path.resolve(dirname, './src/theme/')}`,
     },
   },
 });

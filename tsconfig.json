@@ -25,7 +25,8 @@
       "@enums/*": ["enums/*"],
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@theme/*": ["theme/*"]
     }
   },
   "include": ["src"],

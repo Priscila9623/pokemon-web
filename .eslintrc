@@ -70,6 +70,10 @@
             "group": "internal"
           },
           {
+            "pattern": "@theme/**",
+            "group": "internal"
+          },
+          {
             "pattern": "./*.css",
             "group": "sibling",
             "position": "after"
