@@ -1,6 +1,8 @@
 import React from 'react';
 
+import TeamsContent from '@components/teams';
+
 function Teams() {
-  return <div>Teams</div>;
+  return <TeamsContent />;
 }
 export default Teams;

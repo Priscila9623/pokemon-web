@@ -1,0 +1,8 @@
+@import '@theme/style';
+
+.Teams {
+  padding: 60px 100px 0px 100px;
+  @media (max-width: $breakpoint-md) {
+    padding: 40px 32px 0px 32px;
+  }
+}

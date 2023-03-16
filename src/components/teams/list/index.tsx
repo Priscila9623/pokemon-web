@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import {
   EditOutlined,
@@ -10,6 +10,7 @@ import { Button, ConfigProvider, List } from 'antd';
 import EmptyViewList from '@components/empty-view/list';
 
 import './style.scss';
+import { TeamsListProps } from './types';
 
 const data = [
   {
@@ -26,15 +27,22 @@ const data = [
   },
 ];
 
-const customizeRenderEmpty = () => (
-  <EmptyViewList message="Aun no tienes equipos en esta region" />
-);
+function TeamsList(props: TeamsListProps) {
+  const { regionId } = props;
 
-function TeamsByRegionList() {
+  const customizeRenderEmpty = useCallback(
+    () => (
+      <EmptyViewList
+        message={`Aún no tienes equipos ${regionId ? 'en esta región' : ''}`}
+      />
+    ),
+    [regionId]
+  );
+
   return (
     <ConfigProvider renderEmpty={customizeRenderEmpty}>
       <List
-        className="Teams-by-region-list"
+        className="Teams-list"
         itemLayout="horizontal"
         dataSource={data}
         renderItem={(item) => (
@@ -45,21 +53,21 @@ function TeamsByRegionList() {
                 shape="circle"
                 icon={<ShareAltOutlined />}
                 size="middle"
-                className="Teams-by-region-list__share"
+                className="Teams-list__share"
               />,
               <Button
                 type="primary"
                 shape="circle"
                 icon={<EditOutlined />}
                 size="middle"
-                className="Teams-by-region-list__edit"
+                className="Teams-list__edit"
               />,
               <Button
                 type="primary"
                 shape="circle"
                 icon={<DeleteOutlined />}
                 size="middle"
-                className="Teams-by-region-list__delete"
+                className="Teams-list__delete"
               />,
             ]}
           >
@@ -70,4 +78,4 @@ function TeamsByRegionList() {
     </ConfigProvider>
   );
 }
-export default TeamsByRegionList;
+export default TeamsList;

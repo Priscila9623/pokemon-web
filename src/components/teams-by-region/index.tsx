@@ -3,10 +3,10 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import ResourceNotFound from '@components/error-view/resource-not-found';
+import TeamsList from '@components/teams/list';
 import Title from '@components/title';
 
 import Actions from './actions';
-import TeamsByRegionList from './list';
 import './style.scss';
 
 const num = '1';
@@ -21,9 +21,9 @@ function TeamsByRegion() {
     );
   return (
     <div className="Teams-by-region">
-      <Title text={`Equipos / ${regionId}`} />
+      <Title text={`Mis equipos / ${regionId}`} />
       <Actions />
-      <TeamsByRegionList />
+      <TeamsList regionId={regionId} />
     </div>
   );
 }
