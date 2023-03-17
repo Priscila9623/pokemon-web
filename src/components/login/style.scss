@@ -1,0 +1,34 @@
+@import '@theme/style';
+
+.Login {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  margin: 0px;
+  background-color: $aqua-300;
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+  }
+  &__container {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    &--right {
+      flex: 1;
+    }
+  }
+  &__separator {
+    width: 0;
+    height: 0;
+    border-right: 13.9vw solid transparent;
+    border-top: 100vh solid $aqua-300;
+    margin-right: -13.5vw;
+    z-index: 1;
+    @media (max-width: $breakpoint-md) {
+      border-right: none;
+      border-top: 20vw solid $aqua-300;
+      border-right: 100vw solid transparent;
+      margin-bottom: -19.5vw;
+    }
+  }
+}

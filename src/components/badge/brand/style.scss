@@ -1,0 +1,21 @@
+@import '@theme/style';
+
+.Brand {
+  display: flex;
+  align-items: center;
+  &__text {
+    font-size: $size-14;
+    font-weight: 700;
+    color: $black;
+    font-family: $quick-sand;
+    margin-left: 10px;
+  }
+  & > img {
+    width: 30px;
+    height: 30px;
+    @media (max-width: $breakpoint-sm) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

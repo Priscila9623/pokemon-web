@@ -1,0 +1,18 @@
+@import '@theme/style';
+
+.Login-left-side {
+  padding: 80px 50px 0px 50px;
+  width: 100%;
+  height: 100%;
+  &__title {
+    margin-top: 20px;
+    font-size: $size-64;
+    font-weight: 700;
+    color: $black;
+    font-family: $work-sans;
+    color: $white;
+    @media (max-width: $breakpoint-sm) {
+      font-size: $size-40;
+    }
+  }
+}

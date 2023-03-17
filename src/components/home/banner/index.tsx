@@ -1,7 +1,7 @@
 import React from 'react';
 
 import pikachuGreeting from '@assets/pikachu-greeting.png';
-import pokeball from '@assets/pokeball.png';
+import Brand from '@components/badge/brand';
 
 import './style.scss';
 
@@ -9,10 +9,7 @@ function Banner() {
   return (
     <div className="Home-banner">
       <div className="Home-banner__greeting">
-        <div className="Home-banner__greeting__pokemon">
-          <img src={pokeball} alt="Pokeball" />
-          <div className="Home-banner__greeting__pokemon__text"> Pokemon</div>
-        </div>
+        <Brand />
         <div className="Home-banner__greeting__title">
           Hola!
           <br /> ¿Qué quieres hacer hoy?
