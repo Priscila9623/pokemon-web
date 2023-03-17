@@ -13,9 +13,11 @@ function ErrorView(props: ErrorViewProps) {
       <div className="Error-view__container">
         {children}
         <div className="Error-view__container__message">{message}</div>
-        <Button danger type="primary" shape="round">
-          <Link to="/">Ir a inicio</Link>
-        </Button>
+        <Link to="/">
+          <Button danger type="primary" shape="round">
+            Ir a inicio
+          </Button>
+        </Link>
       </div>
     </div>
   );

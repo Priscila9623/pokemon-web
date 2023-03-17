@@ -52,22 +52,27 @@
         font-size: $size-16;
       }
     }
-    & > button {
-      background-color: $black !important;
-      font-size: $size-16 !important;
-      padding: 10px !important;
-      height: auto !important;
-      font-family: $quick-sand;
-      font-weight: bold;
-      width: 180px;
-      margin-top: 32px;
-      border-width: 2;
-      border-style: solid;
-      border-color: $gray-pale-500;
-      @media (max-width: $breakpoint-sm) {
-        font-size: $size-14 !important;
+    & > a {
+      & > button {
+        background-color: $black !important;
+        font-size: $size-16 !important;
+        padding: 10px !important;
+        height: auto !important;
+        font-family: $quick-sand;
+        font-weight: bold;
+        width: 180px;
+        margin-top: 32px;
+        border-width: 2;
+        border-style: solid;
+        border-color: $gray-pale-500;
+        @media (max-width: $breakpoint-sm) {
+          font-size: $size-14 !important;
+        }
       }
     }
+  }
+  &--color-black {
+    background-color: $black;
   }
   &--color-pink {
     background-color: $pink-500;
