@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -16,6 +17,8 @@ import Pokemons from '@pages/pokemons';
 import TeamDetail from '@pages/team-detail';
 import Teams from '@pages/teams';
 import TeamsByRegion from '@pages/teams-by-region';
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -84,7 +87,11 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }
 
 export default App;
