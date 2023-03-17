@@ -11,9 +11,32 @@
   &__delete {
     background-color: $pink-500 !important;
   }
-}
-
-.ant-list-item-meta-title {
-  font-size: $size-16 !important;
-  font-family: $work-sans !important;
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 120px;
+    @media (max-width: $breakpoint-sm) {
+      flex-direction: column;
+      width: auto;
+      height: 120px;
+    }
+  }
+  &__details {
+    display: flex;
+    flex-direction: column;
+    &__info {
+      color: $gray-dark-500;
+      font-size: $size-14;
+      font-family: $work-sans;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+  }
+  .ant-list {
+    .ant-list-item-meta-title {
+      font-size: $size-16 !important;
+      font-family: $work-sans !important;
+    }
+  }
 }

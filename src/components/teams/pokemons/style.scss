@@ -1,0 +1,45 @@
+@import '@theme/style';
+
+.Teams-pokemons {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border-radius: 8px;
+  &__item {
+    display: flex;
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin-right: -10px;
+    border-width: 1;
+    border-style: solid;
+    border-color: $white;
+    &:nth-child(1) {
+      background-color: $aqua-500;
+    }
+    &:nth-child(2) {
+      background-color: $yellow-500;
+    }
+    &:nth-child(3) {
+      background-color: $pink-500;
+    }
+    &:nth-child(4) {
+      background-color: $sky-blue-500;
+    }
+    &:nth-child(5) {
+      background-color: $violet-500;
+    }
+    &:nth-child(6) {
+      background-color: $brown-500;
+    }
+    border-radius: 50%;
+    @media (max-width: $breakpoint-sm) {
+      width: 40px;
+      height: 40px;
+      margin-right: -10px;
+    }
+  }
+}

@@ -9,26 +9,13 @@ import { Button, ConfigProvider, List } from 'antd';
 
 import EmptyViewList from '@components/empty-view/list';
 
+import Pokemons from '../pokemons';
+
 import './style.scss';
 import { TeamsListProps } from './types';
 
-const data = [
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-];
-
 function TeamsList(props: TeamsListProps) {
-  const { regionId } = props;
+  const { regionId, data, readonly } = props;
 
   const customizeRenderEmpty = useCallback(
     () => (
@@ -43,35 +30,54 @@ function TeamsList(props: TeamsListProps) {
     <ConfigProvider renderEmpty={customizeRenderEmpty}>
       <List
         className="Teams-list"
-        itemLayout="horizontal"
+        itemLayout="vertical"
+        size="large"
         dataSource={data}
         renderItem={(item) => (
           <List.Item
-            actions={[
-              <Button
-                type="primary"
-                shape="circle"
-                icon={<ShareAltOutlined />}
-                size="middle"
-                className="Teams-list__share"
-              />,
-              <Button
-                type="primary"
-                shape="circle"
-                icon={<EditOutlined />}
-                size="middle"
-                className="Teams-list__edit"
-              />,
-              <Button
-                type="primary"
-                shape="circle"
-                icon={<DeleteOutlined />}
-                size="middle"
-                className="Teams-list__delete"
-              />,
-            ]}
+            extra={
+              readonly ? null : (
+                <div className="Teams-list__actions">
+                  <Button
+                    type="primary"
+                    shape="circle"
+                    icon={<ShareAltOutlined />}
+                    size="middle"
+                    className="Teams-list__share"
+                  />
+                  <Button
+                    type="primary"
+                    shape="circle"
+                    icon={<EditOutlined />}
+                    size="middle"
+                    className="Teams-list__edit"
+                  />
+                  <Button
+                    type="primary"
+                    shape="circle"
+                    icon={<DeleteOutlined />}
+                    size="middle"
+                    className="Teams-list__delete"
+                  />
+                </div>
+              )
+            }
           >
-            <List.Item.Meta title={item.title} />
+            <div className="Teams-list__details__info">
+              <List.Item.Meta title={item.name} description="Región x" />
+              <div className="Teams-list__details__info">
+                {item.members.length} miembros
+              </div>
+              <div>
+                <Pokemons
+                  data={item.members.map((m) => ({
+                    name: m.name,
+                    id: m.id,
+                    img: m.img,
+                  }))}
+                />
+              </div>
+            </div>
           </List.Item>
         )}
       />
