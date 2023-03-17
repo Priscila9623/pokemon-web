@@ -27,7 +27,8 @@
       "@utils/*": ["utils/*"],
       "@pages/*": ["pages/*"],
       "@theme/*": ["theme/*"],
-      "@layout/*": ["layout/*"]
+      "@layout/*": ["layout/*"],
+      "@auth/*": ["auth/*"]
     }
   },
   "include": ["src"],

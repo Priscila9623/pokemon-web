@@ -22,6 +22,7 @@ export default defineConfig({
       '@pages': `${path.resolve(dirname, './src/pages/')}`,
       '@theme': `${path.resolve(dirname, './src/theme/')}`,
       '@layout': `${path.resolve(dirname, './src/layout/')}`,
+      '@auth': `${path.resolve(dirname, './src/auth/')}`,
     },
   },
 });

@@ -78,6 +78,10 @@
             "group": "internal"
           },
           {
+            "pattern": "@auth/**",
+            "group": "internal"
+          },
+          {
             "pattern": "./*.css",
             "group": "sibling",
             "position": "after"
@@ -99,5 +103,13 @@
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
 }
