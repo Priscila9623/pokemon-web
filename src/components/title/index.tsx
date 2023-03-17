@@ -4,7 +4,7 @@ import './style.scss';
 import { TitleProps } from './types';
 
 function Title(props: TitleProps) {
-  const { text } = props;
-  return <h1 className="Title">{text}</h1>;
+  const { text, className } = props;
+  return <div className={`Title ${className}`}>{text}</div>;
 }
 export default Title;

@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import ResourceNotFound from '@components/error-view/resource-not-found';
+import GoBack from '@components/go-back';
 import TeamsList from '@components/teams/list';
 import Title from '@components/title';
 
@@ -31,7 +32,13 @@ function TeamsByRegion() {
     );
   return (
     <div className="Teams-by-region">
-      <Title text={`Mis equipos / ${regionId}`} />
+      <div className="Teams-by-region__title">
+        <GoBack path="/" />
+        <Title
+          text={`Mis equipos / ${regionId}`}
+          className="Teams-by-region__title__text"
+        />
+      </div>
       <Actions />
       <TeamsList regionId={regionId} data={data} />
     </div>

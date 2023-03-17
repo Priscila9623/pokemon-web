@@ -3,6 +3,7 @@
 .Team-detail-name {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
   &__switch {
     width: 60%;
     @media (max-width: $breakpoint-sm) {

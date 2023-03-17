@@ -1,11 +1,18 @@
 @import '@theme/style';
 
 .Teams-by-region {
-  padding: 60px 100px 0px 100px;
+  padding: 120px 100px 0px 100px;
   @media (max-width: $breakpoint-md) {
-    padding: 40px 32px 0px 32px;
+    padding: 150px 32px 0px 32px;
   }
   @media (max-width: $breakpoint-md) {
-    padding: 40px 12px 0px 12px;
+    padding: 150px 12px 0px 12px;
+  }
+  &__title {
+    display: flex;
+    align-items: center;
+    &__text {
+      margin-left: 10px;
+    }
   }
 }

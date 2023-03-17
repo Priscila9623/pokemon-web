@@ -5,16 +5,29 @@
   height: 100%;
   &__pokemon {
     z-index: -1;
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     overflow: hidden;
     position: absolute;
     top: 0;
     right: 0;
     & > img {
-      margin: -80px -80px 0px 80px;
-      width: 300px;
-      height: 300px;
+      margin: -140px -140px 0px 140px;
+      width: 400px;
+      height: 400px;
+    }
+  }
+  &__log-out {
+    & > div {
+      position: absolute;
+      right: 0;
+      width: 117px;
+      height: 117px;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 0;
     }
   }
 }

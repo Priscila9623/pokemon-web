@@ -1,0 +1,16 @@
+@import '@theme/style';
+
+.Go-back {
+  & > a {
+    & > button {
+      background-color: transparent !important;
+      color: $black;
+      font-size: $size-18;
+      border: none;
+      height: auto;
+      &:hover {
+        color: $pink-600 !important;
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import GoBack from '@components/go-back';
 import Title from '@components/title';
 
 import TeamsList from './list';
@@ -18,7 +19,10 @@ const data = Array.from({ length: 10 }, (_, i) => ({
 function Teams() {
   return (
     <div className="Teams">
-      <Title text="Mis equipos" />
+      <div className="Teams__title">
+        <GoBack path="/" />
+        <Title text="Mis equipos" className="Teams__title__text" />
+      </div>
       <TeamsList data={data} />
     </div>
   );
