@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Brand from '@components/badge/brand';
+import Brand from '@components/brand';
 
 import './style.scss';
 
