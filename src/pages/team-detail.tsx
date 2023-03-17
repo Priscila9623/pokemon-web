@@ -1,11 +1,8 @@
 import React from 'react';
 
-import { useParams } from 'react-router-dom';
+import TeamDetailContent from '@components/team-detail';
 
 function TeamDetail() {
-  const params = useParams();
-  const { teamId } = params;
-
-  return <div>Team detail {teamId ?? 'New'}</div>;
+  return <TeamDetailContent />;
 }
 export default TeamDetail;

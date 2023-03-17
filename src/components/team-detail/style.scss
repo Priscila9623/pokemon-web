@@ -1,0 +1,14 @@
+@import '@theme/style';
+
+.Team-detail {
+  padding: 60px 0px 0px 100px;
+  @media (max-width: $breakpoint-md) {
+    padding: 40px 0px 0px 32px;
+  }
+  &__container {
+    padding-right: 100px;
+    @media (max-width: $breakpoint-md) {
+      padding-right: 32px;
+    }
+  }
+}

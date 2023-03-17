@@ -13,4 +13,5 @@ export type PokemonCardProps = {
   className?: string;
   width?: number;
   color?: PokemonCardColors;
+  onClick?: () => void;
 };

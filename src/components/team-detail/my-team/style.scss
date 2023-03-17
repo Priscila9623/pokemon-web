@@ -1,0 +1,39 @@
+@import '@theme/style';
+
+.Team-detail-my-team {
+  margin-top: 40px;
+  &__card {
+    display: flex;
+    flex-direction: column;
+    &__delete {
+      align-self: flex-end;
+      background-color: $gray-light-500;
+      color: $black;
+      font-size: $size-12;
+      margin-bottom: -20px;
+      margin-right: -7px;
+      z-index: 10;
+      &:hover {
+        background-color: $pink-600 !important;
+      }
+    }
+  }
+  .ant-list {
+    .ant-list-items:first-child {
+      display: flex !important;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+      width: auto;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* mozilla */
+      &::-webkit-scrollbar {
+        display: none; /* Safari and Chrome browsers */
+      }
+    }
+    .ant-list-item {
+      margin-right: 10px;
+      border-block-end: none !important;
+    }
+  }
+}

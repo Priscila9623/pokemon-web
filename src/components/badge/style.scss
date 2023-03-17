@@ -1,0 +1,12 @@
+@import '@theme/style';
+
+.ant-badge-hoverable {
+  cursor: none;
+}
+
+.ant-badge .ant-badge-count {
+  background: rgba($color: $white, $alpha: 0.3) !important;
+  box-shadow: none !important;
+  font-family: $work-sans !important;
+  margin-right: 4px !important;
+}

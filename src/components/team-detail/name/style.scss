@@ -1,0 +1,32 @@
+@import '@theme/style';
+
+.Team-detail-name {
+  display: flex;
+  justify-content: center;
+  &__switch {
+    width: 60%;
+    @media (max-width: $breakpoint-sm) {
+      width: 100%;
+    }
+    & > button {
+      background-color: $pink-500 !important;
+      height: auto;
+      min-width: 50px;
+    }
+    &__icon {
+      color: $black;
+    }
+    & > input {
+      background-color: $gray-light-100;
+      border-color: $gray-light-100;
+      min-height: 50px;
+      font-family: $work-sans !important;
+      &:hover {
+        border-color: $gray-light-600;
+      }
+      &:focus {
+        border-color: $gray-light-100;
+      }
+    }
+  }
+}
