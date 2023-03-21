@@ -1,31 +1,28 @@
 import React from 'react';
 
-import { ArrowLeftOutlined, SaveFilled } from '@ant-design/icons';
-import { Button, Input, Space } from 'antd';
+import { Input } from 'antd';
+
+import Title from '@components/title';
 
 import './style.scss';
 import { NameProps } from './types';
 
 function Name(props: NameProps) {
-  const { teamName } = props;
+  const { teamName, onChange } = props;
+
+  const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value);
+  };
+
   return (
     <div className="Team-detail-name">
-      <Space.Compact className="Team-detail-name__switch">
-        <Button
-          type="primary"
-          icon={<ArrowLeftOutlined />}
-          className="Team-detail-name__switch__icon"
-        />
-        <Input
-          defaultValue={teamName}
-          placeholder="¿Cómo llamaremos a este equipo?"
-        />
-        <Button
-          type="primary"
-          icon={<SaveFilled />}
-          className="Team-detail-name__switch__icon"
-        />
-      </Space.Compact>
+      <Title text="1 | Nombre del equipo" />
+      <Input
+        defaultValue={teamName}
+        placeholder="¿Cómo llamaremos a este equipo?"
+        className="Team-detail-name__input"
+        onChange={onChangeText}
+      />
     </div>
   );
 }

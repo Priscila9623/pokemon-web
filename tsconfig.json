@@ -28,7 +28,8 @@
       "@pages/*": ["pages/*"],
       "@theme/*": ["theme/*"],
       "@layout/*": ["layout/*"],
-      "@auth/*": ["auth/*"]
+      "@auth/*": ["auth/*"],
+      "@api/*": ["api/*"]
     }
   },
   "include": ["src"],

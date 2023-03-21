@@ -2,32 +2,26 @@
 
 .Team-detail-name {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  &__switch {
+  flex-direction: column;
+  margin-top: 40px;
+  width: 100%;
+  &__input {
+    margin-top: 20px;
+    background-color: $gray-light-100;
+    border-color: $gray-light-100;
+    min-height: 40px;
     width: 60%;
-    @media (max-width: $breakpoint-sm) {
+    align-self: center;
+    min-width: 50vw !important;
+    font-family: $work-sans !important;
+    @media (max-width: $breakpoint-md) {
       width: 100%;
     }
-    & > button {
-      background-color: $pink-500 !important;
-      height: auto;
-      min-width: 50px;
+    &:hover {
+      border-color: $gray-light-600;
     }
-    &__icon {
-      color: $black;
-    }
-    & > input {
-      background-color: $gray-light-100;
+    &:focus {
       border-color: $gray-light-100;
-      min-height: 50px;
-      font-family: $work-sans !important;
-      &:hover {
-        border-color: $gray-light-600;
-      }
-      &:focus {
-        border-color: $gray-light-100;
-      }
     }
   }
 }

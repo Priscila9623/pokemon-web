@@ -1,3 +1,7 @@
 @import '@theme/colors';
 @import '@theme/fonts';
 @import '@theme/breakpoints';
+
+.ant-empty-description {
+  font-family: $work-sans !important;
+}

@@ -1,5 +1,10 @@
+import { CharacterData } from '../character/types';
+
 export type PokemonDetailProps = {
-  data: any;
+  pokemonId?: string;
   open: boolean;
   onClose: () => void;
+  onAdd: (data: CharacterData) => void;
+  count: number;
+  team: string[];
 };

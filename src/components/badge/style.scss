@@ -1,5 +1,9 @@
 @import '@theme/style';
 
+.Badge {
+  text-transform: capitalize;
+}
+
 .ant-badge-hoverable {
   cursor: none;
 }

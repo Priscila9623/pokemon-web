@@ -23,6 +23,7 @@ export default defineConfig({
       '@theme': `${path.resolve(dirname, './src/theme/')}`,
       '@layout': `${path.resolve(dirname, './src/layout/')}`,
       '@auth': `${path.resolve(dirname, './src/auth/')}`,
+      '@api': `${path.resolve(dirname, './src/api/')}`,
     },
   },
 });

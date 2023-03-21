@@ -1,5 +1,8 @@
 @import '@theme/style';
 
 .Team-detail-pokemon-list {
-  margin-top: 40px;
+  margin-top: 30px;
+  .ant-divider-inner-text {
+    font-family: $work-sans;
+  }
 }
