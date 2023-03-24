@@ -7,3 +7,9 @@ export type RegionData = {
   count: number;
   results: RegionResultsData[];
 };
+
+export type PokemonByAreaData = {
+  pokemon: {
+    name: string;
+  };
+};

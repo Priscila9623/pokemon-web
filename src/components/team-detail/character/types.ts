@@ -1,11 +1,9 @@
-import { PokemonCardColors } from '@components/pokemon-card/types';
-
 export type CharacterData = {
-  id: string;
+  id?: string;
   name: string;
   skills?: { ability: { name: string } }[];
   image?: string;
-  color: PokemonCardColors;
+  description?: string;
 };
 
 export type CharacterProps = {

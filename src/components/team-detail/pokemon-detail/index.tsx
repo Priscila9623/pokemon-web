@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Drawer, Spin } from 'antd';
@@ -18,10 +18,12 @@ import { PokemonDetailProps } from './types';
 function PokemonDetail(props: PokemonDetailProps) {
   const { open, onClose, pokemonId, onAdd, count, team } = props;
   const { isLoading, data } = useGetPokemonById(pokemonId!);
+  const [showMore, setShowMore] = useState(false);
   const showButton = useMemo(
     () => count < MAX_TEAM_COUNT + 1 && !team.includes(pokemonId!),
     [pokemonId, count]
   );
+  const color = useMemo(() => getListColor(data?.name!), [data?.name!]);
 
   const onAddPokemon = () => {
     onAdd({
@@ -29,19 +31,29 @@ function PokemonDetail(props: PokemonDetailProps) {
       name: data?.name ?? '',
       skills: data?.abilities,
       image: data?.sprites.front_default,
-      color: 'aqua',
+      description: data?.description,
     });
+  };
+
+  const onShowMore = () => setShowMore(!showMore);
+
+  const onCloseDrawer = () => {
+    onClose();
+    setShowMore(false);
   };
 
   if (!pokemonId) return <div />;
 
   return (
-    <Drawer placement="right" onClose={onClose} open={open} closable={false}>
+    <Drawer
+      placement="right"
+      onClose={onCloseDrawer}
+      open={open}
+      closable={false}
+    >
       <Spin tip="Cargando detalles del pokemon" spinning={isLoading}>
         <div
-          className={`Team-detail-pokemon-detail Team-detail-pokemon-detail--color-${getListColor(
-            data?.id!
-          )}`}
+          className={`Team-detail-pokemon-detail Team-detail-pokemon-detail--color-${color}`}
         >
           <Button
             icon={<CloseCircleOutlined />}
@@ -100,13 +112,29 @@ function PokemonDetail(props: PokemonDetailProps) {
                 </div>
               </div>
             </div>
+            <div
+              className={cx('Team-detail-pokemon-detail__bottom__description', {
+                'Team-detail-pokemon-detail__bottom__description--all':
+                  showMore,
+              })}
+            >
+              {data?.description}
+            </div>
+            <Button
+              block
+              onClick={onShowMore}
+              type="ghost"
+              className="Team-detail-pokemon-detail__bottom__description__more"
+            >
+              Leer más
+            </Button>
             {showButton && (
               <Button
                 icon={<PlusOutlined />}
                 onClick={onAddPokemon}
                 type="primary"
                 shape="round"
-                className="Team-detail-pokemon-detail__bottom__button"
+                className={`Team-detail-pokemon-detail__bottom__button Team-detail-pokemon-detail--color-${color}`}
               >
                 Añadir al equipo
               </Button>

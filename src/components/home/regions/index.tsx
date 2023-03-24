@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { List, Spin } from 'antd';
 import { Link } from 'react-router-dom';
@@ -13,6 +13,19 @@ import './style.scss';
 
 function Regions() {
   const { isLoading, data } = useGetRegions();
+
+  const renderItem = useCallback(
+    (item: RegionResultsData) => (
+      <List.Item>
+        <Link to={`region/${item.name}`}>
+          <PokemonCard color={getListColor(item.name)}>
+            <div className="Home-regions__name">{item.name}</div>
+          </PokemonCard>
+        </Link>
+      </List.Item>
+    ),
+    []
+  );
 
   return (
     <div className="Home-regions">
@@ -29,15 +42,7 @@ function Regions() {
             xxl: 4,
           }}
           dataSource={data?.results ?? []}
-          renderItem={(item, index) => (
-            <List.Item>
-              <Link to={`region/${item.name}`}>
-                <PokemonCard color={getListColor(index)}>
-                  <div className="Home-regions__name">{item.name}</div>
-                </PokemonCard>
-              </Link>
-            </List.Item>
-          )}
+          renderItem={renderItem}
         />
       </Spin>
     </div>

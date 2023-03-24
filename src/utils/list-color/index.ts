@@ -1,13 +1,15 @@
 import { PokemonCardColors } from '@components/pokemon-card/types';
 
-const getListColor = (position: number): PokemonCardColors => {
-  const item = String(position + 1);
-  if (item.startsWith('1') || item.startsWith('7')) return 'yellow';
-  if (item.startsWith('2') || item.startsWith('8')) return 'aqua';
-  if (item.startsWith('3') || item.startsWith('9')) return 'pink';
-  if (item.startsWith('4')) return 'sky-blue';
-  if (item.startsWith('5')) return 'brown';
-  if (item.startsWith('6')) return 'violet';
+const testColor = (regex: RegExp, value: string) => regex.test(value);
+
+const getListColor = (name?: string): PokemonCardColors => {
+  if (!name) return 'yellow';
+  if (testColor(/^[a-dA-D]/g, name)) return 'yellow';
+  if (testColor(/^[e-hE-H]/g, name)) return 'aqua';
+  if (testColor(/^[i-lI-L]/g, name)) return 'pink';
+  if (testColor(/^[m-qM-Q]/g, name)) return 'sky-blue';
+  if (testColor(/^[r-uR-U]/g, name)) return 'brown';
+  if (testColor(/^[v-zV-Z]/g, name)) return 'violet';
   return 'yellow';
 };
 

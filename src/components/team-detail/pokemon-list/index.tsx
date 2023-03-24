@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
-import { ConfigProvider, Divider, List } from 'antd';
+import { ConfigProvider, Divider, List, Spin } from 'antd';
 
+import { useGetPokemonsByRegions } from '@api/services/region-api';
 import EmptyViewList from '@components/empty-view/list';
 
 import Character from '../character';
@@ -14,34 +15,48 @@ const customizeRenderEmpty = () => (
 );
 
 function PokemonList(props: PokemonListProps) {
-  const { data, onClickItem } = props;
+  const { onClickItem, regionId } = props;
+  const { isLoading, data } = useGetPokemonsByRegions(regionId);
 
   const selectPokemon = (id: string) => {
     onClickItem(id);
   };
 
+  const renderItem = useCallback(
+    (item: string) => (
+      <List.Item onClick={() => onClickItem(item)}>
+        <Character data={{ name: item }} onClick={() => selectPokemon(item)} />
+      </List.Item>
+    ),
+    []
+  );
+
   return (
     <div className="Team-detail-pokemon-list">
       <Divider orientation="left">Pokemons</Divider>
-      <ConfigProvider renderEmpty={customizeRenderEmpty}>
-        <List
-          grid={{
-            gutter: 16,
-            xs: 1,
-            sm: 2,
-            md: 3,
-            lg: 4,
-            xl: 4,
-            xxl: 4,
-          }}
-          dataSource={data}
-          renderItem={(item) => (
-            <List.Item onClick={() => onClickItem(item.id)}>
-              <Character data={item} onClick={() => selectPokemon(item.id)} />
-            </List.Item>
-          )}
-        />
-      </ConfigProvider>
+      {regionId && (
+        <Spin
+          tip="Cargando pokemons de la región"
+          size="small"
+          spinning={isLoading}
+        >
+          <ConfigProvider renderEmpty={customizeRenderEmpty}>
+            <List
+              grid={{
+                gutter: 16,
+                xs: 1,
+                sm: 2,
+                md: 3,
+                lg: 4,
+                xl: 4,
+                xxl: 4,
+              }}
+              dataSource={data || []}
+              renderItem={renderItem}
+            />
+          </ConfigProvider>
+        </Spin>
+      )}
     </div>
   );
 }

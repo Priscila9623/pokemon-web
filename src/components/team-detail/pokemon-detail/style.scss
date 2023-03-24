@@ -110,14 +110,34 @@
       }
     }
     &__button {
-      background-color: $sky-blue-500 !important;
       font-family: $work-sans !important;
-      margin-top: 20px;
+      margin-top: 30px;
       font-size: $size-16 !important;
       padding: 5px !important;
       height: auto !important;
       @media (max-width: $breakpoint-sm) {
         font-size: $size-14 !important;
+      }
+    }
+    &__description {
+      font-family: $work-sans;
+      font-size: $size-14;
+      color: $black;
+      height: 150px;
+      overflow: hidden;
+      &--all {
+        height: 100%;
+      }
+      &__more {
+        align-self: flex-end;
+        font-family: $quick-sand !important;
+        font-size: $size-14 !important;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: right;
+        width: auto !important;
+        color: $black;
+        padding: 5px !important;
       }
     }
   }

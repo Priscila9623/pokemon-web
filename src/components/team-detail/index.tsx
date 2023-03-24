@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { useGetRegionById } from '@api/services/region-api';
 import ResourceNotFound from '@components/error-view/resource-not-found';
 import Title from '@components/title';
 
@@ -15,51 +16,12 @@ import { StepData } from './steps/types';
 import './style.scss';
 import { MIN_TEAM_COUNT, PokemonTeamData } from './types';
 
-const data: CharacterData[] = [
-  {
-    id: '1',
-    name: 'Title 1',
-    skills: [{ ability: { name: 'skill' } }, { ability: { name: 'skill1' } }],
-    color: 'yellow',
-  },
-  {
-    id: '2',
-    name: 'Title 2',
-    skills: [{ ability: { name: 'skill2' } }],
-    color: 'pink',
-  },
-  {
-    id: '3',
-    name: 'Title 3',
-    skills: [],
-    color: 'aqua',
-  },
-  {
-    id: '4',
-    name: 'Title 4',
-    skills: [],
-    color: 'violet',
-  },
-  {
-    id: '5',
-    name: 'Title 3',
-    skills: [],
-    color: 'sky-blue',
-  },
-  {
-    id: '6',
-    name: 'Title 4',
-    skills: [],
-    color: 'brown',
-  },
-];
-
-const region = '1';
 const team = '1';
 
 function Teams() {
   const { teamId, regionId } = useParams();
   const navigate = useNavigate();
+  const { error, data: regionData } = useGetRegionById(regionId!);
 
   const [open, setOpen] = useState(false);
   const [selectedPokemon, setSelectedPokemon] = useState<string>();
@@ -69,7 +31,7 @@ function Teams() {
   });
   const currentTeamCount = currentTeam.pokemons.length;
   const currentTeamIds = useMemo(
-    () => currentTeam.pokemons.map((item) => item.id),
+    () => currentTeam.pokemons.map((item) => item.name),
     [currentTeamCount]
   );
 
@@ -133,7 +95,9 @@ function Teams() {
     }));
   };
 
-  if (region === regionId || team === teamId)
+  if (!regionData) return <div />;
+
+  if (error?.response?.status === 404 || team === teamId)
     return (
       <ResourceNotFound message="No pudimos encontrar lo que estás buscando" />
     );
@@ -151,7 +115,7 @@ function Teams() {
         onDelete={onDeletePokemon}
       />
       <div className="Team-detail__container">
-        <PokemonList data={data} onClickItem={showDrawer} />
+        <PokemonList onClickItem={showDrawer} regionId={regionId!} />
       </div>
       <PokemonDetail
         pokemonId={selectedPokemon}
