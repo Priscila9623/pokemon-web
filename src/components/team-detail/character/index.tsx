@@ -13,13 +13,13 @@ import { CharacterProps } from './types';
 function Character(props: CharacterProps) {
   const { data, onClick } = props;
 
-  const color = useMemo(() => getListColor(data.name), []);
-  const skills = useMemo(() => {
-    if (!data.skills) return [];
-    const initialSkills = data.skills?.slice(0, 2);
-    return initialSkills;
-  }, [data.skills?.length]);
-  const amountOfSkills = (data.skills?.length ?? 0) - skills.length || 0;
+  const color = useMemo(() => getListColor(data.name), [data.name]);
+  const types = useMemo(() => {
+    if (!data.types) return [];
+    const initialTypes = data.types?.slice(0, 2);
+    return initialTypes;
+  }, [data.types?.length]);
+  const amountOfTypes = (data.types?.length ?? 0) - types.length || 0;
 
   const onClickCard = () => {
     onClick(data.name);
@@ -31,10 +31,10 @@ function Character(props: CharacterProps) {
         <div>
           <div className="Team-detail-character__name">{data.name}</div>
           <div className="Team-detail-character__skills">
-            {skills.map((s) => (
-              <Badge key={s.ability.name} label={s.ability.name} />
+            {types.map((s) => (
+              <Badge key={s} label={s} />
             ))}
-            {amountOfSkills > 0 && <Badge label={`+${amountOfSkills}`} />}
+            {amountOfTypes > 0 && <Badge label={`+${amountOfTypes}`} />}
           </div>
         </div>
         <img

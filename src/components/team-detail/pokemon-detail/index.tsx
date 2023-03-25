@@ -29,7 +29,7 @@ function PokemonDetail(props: PokemonDetailProps) {
     onAdd({
       id: String(data?.id) ?? '',
       name: data?.name ?? '',
-      skills: data?.abilities,
+      types: data?.types,
       image: data?.sprites.front_default,
       description: data?.description,
     });
@@ -74,8 +74,8 @@ function PokemonDetail(props: PokemonDetailProps) {
                 </div>
                 <div className="Team-detail-pokemon-detail__top__content__details">
                   <div className="Team-detail-pokemon-detail__top__content__details__skills">
-                    {data?.abilities.map((ab) => (
-                      <Badge label={ab.ability.name} key={ab.ability.name} />
+                    {data?.types.map((type) => (
+                      <Badge label={type} key={type} />
                     ))}
                   </div>
                   <div className="Team-detail-pokemon-detail__top__content__details__number">

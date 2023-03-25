@@ -1,7 +1,7 @@
 export type CharacterData = {
   id?: string;
   name: string;
-  skills?: { ability: { name: string } }[];
+  types?: string[];
   image?: string;
   description?: string;
 };
