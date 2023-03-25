@@ -14,9 +14,7 @@ export const signInWithGoogle = async () => {
   return res.user;
 };
 
-export const signOut = async () => {
-  await firebaseSignOut(auth);
-};
+export const signOut = () => firebaseSignOut(auth);
 
 export default {
   signInWithGoogle,
