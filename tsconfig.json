@@ -29,7 +29,8 @@
       "@theme/*": ["theme/*"],
       "@layout/*": ["layout/*"],
       "@auth/*": ["auth/*"],
-      "@api/*": ["api/*"]
+      "@api/*": ["api/*"],
+      "@services/*": ["services/*"]
     }
   },
   "include": ["src"],

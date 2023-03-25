@@ -11,8 +11,10 @@
     color: $black;
     font-family: $work-sans;
     color: $white;
-    @media (max-width: $breakpoint-sm) {
+    margin-bottom: 40px;
+    @media (max-width: $breakpoint-md) {
       font-size: $size-40;
+      margin-bottom: 20px;
     }
   }
 }

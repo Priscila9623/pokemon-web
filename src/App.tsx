@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 
 import PrivateRoute from '@auth/private-route';
+import AuthStateLayout from '@layout/auth-state-layout';
 import MainLayout from '@layout/main-layout';
 import Home from '@pages/home';
 import Login from '@pages/login';
@@ -22,7 +23,7 @@ const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route path="/" element={<AuthStateLayout />}>
       <Route element={<MainLayout />}>
         <Route
           index

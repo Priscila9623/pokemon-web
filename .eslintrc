@@ -86,6 +86,10 @@
             "group": "internal"
           },
           {
+            "pattern": "@services/**",
+            "group": "internal"
+          },
+          {
             "pattern": "./*.css",
             "group": "sibling",
             "position": "after"

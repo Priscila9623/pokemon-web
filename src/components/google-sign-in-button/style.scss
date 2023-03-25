@@ -1,0 +1,62 @@
+@import '@theme/style';
+
+.Google-sign-in-button {
+  position: absolute;
+  border-radius: 2px;
+  padding: 3px;
+  &__container {
+    border: none;
+    background: $white;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.084),
+      0px 1px 1px rgba(0, 0, 0, 0.168);
+    height: 40px;
+    &__text {
+      margin-right: 8px;
+      font-family: $roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: $size-14;
+      line-height: $size-16;
+
+      color: rgba(0, 0, 0, 0.54);
+    }
+    &__icon {
+      margin: 0px 24px 0px 8px;
+      width: 18px;
+      height: 18px;
+    }
+    &:hover {
+      border: 0.5px solid #4285f4;
+      box-shadow: none;
+    }
+    &:focus {
+      outline-color: transparent;
+      outline-style: solid;
+    }
+  }
+  &:hover {
+    background: rgba(66, 133, 244, 0.1);
+    box-sizing: border-box;
+  }
+  &:focus-within {
+    background: linear-gradient(
+        0deg,
+        rgba(66, 133, 244, 0.3),
+        rgba(66, 133, 244, 0.3)
+      ),
+      #ffffff;
+  }
+
+  &:active {
+    background: none;
+    & > button {
+      background: #eeeeee;
+      outline: none;
+      box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.084),
+        0px 1px 1px rgba(0, 0, 0, 0.168);
+      border: none;
+    }
+  }
+}
