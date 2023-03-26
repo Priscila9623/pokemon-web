@@ -20,7 +20,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  &__container {
+  &__content {
     border-width: 1;
     border-style: solid;
     border-color: $gray-pale-500;
@@ -42,16 +42,6 @@
     @media (max-width: $breakpoint-sm) {
       height: 40%;
     }
-    &__message {
-      font-size: $size-20;
-      color: $black;
-      font-weight: 500;
-      text-align: center;
-      font-family: $quick-sand;
-      @media (max-width: $breakpoint-sm) {
-        font-size: $size-16;
-      }
-    }
     & > a {
       & > button {
         background-color: $black !important;
@@ -69,6 +59,16 @@
           font-size: $size-14 !important;
         }
       }
+    }
+  }
+  &__message {
+    font-size: $size-20;
+    color: $black;
+    font-weight: 500;
+    text-align: center;
+    font-family: $quick-sand;
+    @media (max-width: $breakpoint-sm) {
+      font-size: $size-16;
     }
   }
   &--color-black {

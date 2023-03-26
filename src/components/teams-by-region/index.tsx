@@ -30,7 +30,7 @@ function TeamsByRegion() {
         <GoBack path="/" />
         <Title
           text={`Mis equipos / ${regionId}`}
-          className="Teams-by-region__title__text"
+          className="Teams-by-region__text"
         />
       </div>
       <Actions />

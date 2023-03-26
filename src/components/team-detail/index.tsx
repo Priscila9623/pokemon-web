@@ -166,7 +166,7 @@ function Teams() {
   return (
     <div className="Team-detail">
       <Title text={`Equipo en la región ${regionName!}`} />
-      <div className="Team-detail__container">
+      <div className="Team-detail__content">
         <Steps
           items={steps}
           onSave={onSaveTeam}
@@ -181,7 +181,7 @@ function Teams() {
         onDelete={onDeletePokemon}
         loading={isLoading}
       />
-      <div className="Team-detail__container">
+      <div className="Team-detail__content">
         <PokemonList onClickItem={showDrawer} regionId={regionName!} />
       </div>
       <PokemonDetail

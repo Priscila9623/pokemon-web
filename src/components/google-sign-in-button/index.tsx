@@ -25,16 +25,14 @@ function GoogleSignInButton() {
         <button
           type="button"
           onClick={onClick}
-          className="Google-sign-in-button__container"
+          className="Google-sign-in-button__inner-box"
         >
           <img
             src={googleLogo}
             alt="Google logo"
-            className="Google-sign-in-button__container__icon"
+            className="Google-sign-in-button__icon"
           />
-          <div className="Google-sign-in-button__container__text">
-            Acceder con Google
-          </div>
+          <div className="Google-sign-in-button__text">Acceder con Google</div>
         </button>
       </div>
     </div>

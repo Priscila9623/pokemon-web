@@ -10,9 +10,9 @@ function ErrorView(props: ErrorViewProps) {
   const { children, message, color = 'pink' } = props;
   return (
     <div className={`Error-view Error-view--color-${color}`}>
-      <div className="Error-view__container">
+      <div className="Error-view__content">
         {children}
-        <div className="Error-view__container__message">{message}</div>
+        <div className="Error-view__message">{message}</div>
         <Link to="/">
           <Button danger type="primary" shape="round">
             Ir a inicio

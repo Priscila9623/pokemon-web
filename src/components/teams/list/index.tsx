@@ -90,12 +90,12 @@ function TeamsList(props: TeamsListProps) {
                 )
               }
             >
-              <div className="Teams-list__details__info">
+              <div className="Teams-list__info">
                 <List.Item.Meta
                   title={item.name}
                   description={item.regionName}
                 />
-                <div className="Teams-list__details__info">
+                <div className="Teams-list__info">
                   {item.pokemons?.length || 0} miembros
                 </div>
                 <div>

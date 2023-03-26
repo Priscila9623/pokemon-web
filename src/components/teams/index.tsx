@@ -14,7 +14,7 @@ function Teams() {
     <div className="Teams">
       <div className="Teams__title">
         <GoBack path="/" />
-        <Title text="Mis equipos" className="Teams__title__text" />
+        <Title text="Mis equipos" className="Teams__text" />
       </div>
       <TeamsList
         data={data}

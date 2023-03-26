@@ -30,7 +30,7 @@ function Character(props: CharacterProps) {
       <div className="Team-detail-character">
         <div>
           <div className="Team-detail-character__name">{data.name}</div>
-          <div className="Team-detail-character__skills">
+          <div className="Team-detail-character__types">
             {types.map((s) => (
               <Badge key={s} label={s} />
             ))}

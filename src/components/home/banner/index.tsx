@@ -14,7 +14,7 @@ function Banner() {
     <div className="Home-banner">
       <div className="Home-banner__greeting">
         <Brand />
-        <div className="Home-banner__greeting__title">
+        <div className="Home-banner__title">
           Hola {name}!
           <br /> ¿Qué quieres hacer hoy?
         </div>

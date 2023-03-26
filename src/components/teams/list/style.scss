@@ -25,13 +25,13 @@
   &__details {
     display: flex;
     flex-direction: column;
-    &__info {
-      color: $gray-dark-500;
-      font-size: $size-14;
-      font-family: $work-sans;
-      font-weight: 400;
-      margin-bottom: 5px;
-    }
+  }
+  &__info {
+    color: $gray-dark-500;
+    font-size: $size-14;
+    font-family: $work-sans;
+    font-weight: 400;
+    margin-bottom: 5px;
   }
   .ant-list {
     .ant-list-item-meta-title {

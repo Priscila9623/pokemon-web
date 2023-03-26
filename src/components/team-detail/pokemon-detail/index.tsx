@@ -64,20 +64,20 @@ function PokemonDetail(props: PokemonDetailProps) {
             <img
               src={pokemonBg}
               alt="Pokemon background"
-              className="Team-detail-pokemon-detail__top__bg"
+              className="Team-detail-pokemon-detail__bg"
             />
-            <div className="Team-detail-pokemon-detail__top__content">
+            <div className="Team-detail-pokemon-detail__top-content">
               <div>
-                <div className="Team-detail-pokemon-detail__top__content__name">
+                <div className="Team-detail-pokemon-detail__name">
                   {data?.name ?? '-'}
                 </div>
-                <div className="Team-detail-pokemon-detail__top__content__details">
-                  <div className="Team-detail-pokemon-detail__top__content__details__skills">
+                <div className="Team-detail-pokemon-detail__details">
+                  <div className="Team-detail-pokemon-detail__skills">
                     {data?.types.map((type) => (
                       <Badge label={type} key={type} />
                     ))}
                   </div>
-                  <div className="Team-detail-pokemon-detail__top__content__details__number">
+                  <div className="Team-detail-pokemon-detail__number">
                     #{data?.order ?? '-'}
                   </div>
                 </div>
@@ -85,36 +85,31 @@ function PokemonDetail(props: PokemonDetailProps) {
               <img
                 src={data?.sprites.front_default ?? pokeball}
                 alt="Pokemon"
-                className={cx('Team-detail-pokemon-detail__top__content__img', {
-                  'Team-detail-pokemon-detail__top__content__img--empty':
+                className={cx('Team-detail-pokemon-detail__img', {
+                  'Team-detail-pokemon-detail__img--empty':
                     !data?.sprites.front_default,
                 })}
               />
             </div>
           </div>
           <div className="Team-detail-pokemon-detail__bottom">
-            <div className="Team-detail-pokemon-detail__bottom__card">
-              <div className="Team-detail-pokemon-detail__bottom__card__left">
-                <div className="Team-detail-pokemon-detail__bottom__card__left__tag">
-                  Peso
-                </div>
-                <div className="Team-detail-pokemon-detail__bottom__card__left__tag">
-                  Altura
-                </div>
+            <div className="Team-detail-pokemon-detail__card">
+              <div className="Team-detail-pokemon-detail__column-left">
+                <div className="Team-detail-pokemon-detail__tag">Peso</div>
+                <div className="Team-detail-pokemon-detail__tag">Altura</div>
               </div>
-              <div className="Team-detail-pokemon-detail__bottom__card__right">
-                <div className="Team-detail-pokemon-detail__bottom__card__right__description">
+              <div className="Team-detail-pokemon-detail__column-right">
+                <div className="Team-detail-pokemon-detail__tag-description">
                   {data?.weight ?? '-'}lbs
                 </div>
-                <div className="Team-detail-pokemon-detail__bottom__card__right__description">
+                <div className="Team-detail-pokemon-detail__tag-description">
                   {data?.height ?? '-'}fts
                 </div>
               </div>
             </div>
             <div
-              className={cx('Team-detail-pokemon-detail__bottom__description', {
-                'Team-detail-pokemon-detail__bottom__description--all':
-                  showMore,
+              className={cx('Team-detail-pokemon-detail__description', {
+                'Team-detail-pokemon-detail__description--all': showMore,
               })}
             >
               {data?.description}
@@ -123,7 +118,7 @@ function PokemonDetail(props: PokemonDetailProps) {
               block
               onClick={onShowMore}
               type="ghost"
-              className="Team-detail-pokemon-detail__bottom__description__more"
+              className="Team-detail-pokemon-detail__more"
             >
               Leer más
             </Button>
@@ -133,7 +128,7 @@ function PokemonDetail(props: PokemonDetailProps) {
                 onClick={onAddPokemon}
                 type="primary"
                 shape="round"
-                className={`Team-detail-pokemon-detail__bottom__button Team-detail-pokemon-detail--color-${color}`}
+                className={`Team-detail-pokemon-detail__button Team-detail-pokemon-detail--color-${color}`}
               >
                 Añadir al equipo
               </Button>

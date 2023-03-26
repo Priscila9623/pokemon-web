@@ -29,7 +29,7 @@ function MyTeam(props: MyTeamProps) {
             icon={<DeleteOutlined />}
             shape="circle"
             type="primary"
-            className="Team-detail-my-team__card__delete"
+            className="Team-detail-my-team__delete"
             onClick={() => onDeletePokemon(item.name)}
           />
           <Character data={item} onClick={onClickItem} />
