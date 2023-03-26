@@ -8,17 +8,12 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 
-import {
-  useAddTeam,
-  useGetTeamById,
-  useGetTeamByToken,
-  useUpdateTeam,
-} from '@api/services/firebase/teams-api';
+import { useAddTeam, useUpdateTeam } from '@api/services/firebase/teams-api';
 import { TeamPokemonData } from '@api/services/firebase/teams-api/types';
-import { useGetRegionById } from '@api/services/region-api';
 import ResourceNotFound from '@components/error-view/resource-not-found';
 import Title from '@components/title';
 import TeamDetailPrevRouteEnum from '@enums/team-details-prev-route-enum';
+import useTeamData from '@hooks/use-team-data';
 import { auth } from '@services/firebase/firebase';
 
 import MyTeam from './my-team';
@@ -30,25 +25,19 @@ import { StepData } from './steps/types';
 import './style.scss';
 import { MIN_TEAM_COUNT, CurrentTeamData } from './types';
 
-function Teams() {
+function TeamDetail() {
   const user = auth.currentUser;
   const { teamId, regionId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { error, data: regionData } = useGetRegionById(regionId!);
-  const {
-    error: teamError,
-    data: teamData,
-    isLoading,
-  } = useGetTeamById(teamId!);
-  const regionName = regionId || teamData?.name;
   const [searchParams] = useSearchParams();
+  const token = searchParams.get('token')!;
   const {
-    error: teamByTokenError,
-    data: teamByTokenData,
-    isLoading: isLoadingTeamByToken,
-  } = useGetTeamByToken(searchParams.get('token')!);
-
+    data: { team },
+    error,
+    loading,
+  } = useTeamData({ teamId, regionName: regionId!, token });
+  const regionName = regionId || team?.regionName;
   const [open, setOpen] = useState(false);
   const [selectedPokemon, setSelectedPokemon] = useState<string>();
   const [currentTeam, setCurrentTeam] = useState<CurrentTeamData>({
@@ -98,11 +87,11 @@ function Teams() {
   );
 
   const onSaveTeam = () => {
-    if (teamData?.id) {
+    if (team?.id) {
       updateTeam({
-        id: teamData.id,
+        id: team.id,
         team: {
-          ...teamData,
+          ...team,
           ...currentTeam,
         },
       });
@@ -159,18 +148,16 @@ function Teams() {
 
   const initializeTeam = () => {
     setCurrentTeam({
-      pokemons: (teamData || teamByTokenData)?.pokemons || [],
-      name: (teamData || teamByTokenData)?.name!,
+      pokemons: team?.pokemons || [],
+      name: team?.name!,
     });
   };
 
   useEffect(() => {
-    if (teamData?.id || teamByTokenData?.name) initializeTeam();
-  }, [teamData?.id, teamByTokenData?.name]);
+    if (team?.id || team?.name) initializeTeam();
+  }, [team?.id, team?.name]);
 
-  if (!regionData) return <div />;
-
-  if (error?.response?.status === 404 || teamError || teamByTokenError)
+  if (error)
     return (
       <ResourceNotFound message="No pudimos encontrar lo que estás buscando" />
     );
@@ -191,7 +178,7 @@ function Teams() {
         data={currentTeam?.pokemons}
         onClickItem={showDrawer}
         onDelete={onDeletePokemon}
-        loading={isLoading || isLoadingTeamByToken}
+        loading={loading}
       />
       <div className="Team-detail__content">
         <PokemonList onClickItem={showDrawer} regionId={regionName!} />
@@ -207,4 +194,4 @@ function Teams() {
     </div>
   );
 }
-export default Teams;
+export default TeamDetail;

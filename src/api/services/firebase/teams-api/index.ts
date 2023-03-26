@@ -72,7 +72,12 @@ export const useGetTeamById = (idTeam: string) => {
 
       return { ...snap.val(), id: idTeam };
     },
-    { enabled: Boolean(idTeam), retry: false }
+    {
+      enabled: Boolean(idTeam),
+      retry: false,
+      refetchOnWindowFocus: (error) =>
+        (error as unknown as any)?.state?.error?.message !== 'Not found',
+    }
   );
 };
 
@@ -96,7 +101,13 @@ export const useGetTeamByToken = (token: string) => {
 
       return { name: team.name, pokemons: team.pokemons };
     },
-    { enabled: Boolean(token), retry: false, cacheTime: 0 }
+    {
+      enabled: Boolean(token),
+      retry: false,
+      cacheTime: 0,
+      refetchOnWindowFocus: (error) =>
+        (error as unknown as any)?.state?.error?.message !== 'Not found',
+    }
   );
 };
 

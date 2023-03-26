@@ -7,12 +7,12 @@ export type TeamPokemonData = {
 
 export type TeamData = {
   id?: string;
-  name: string;
-  regionName: string;
-  regionUser: string;
-  token: string;
-  userId: string;
-  pokemons: TeamPokemonData[];
+  name?: string;
+  regionName?: string;
+  regionUser?: string;
+  token?: string;
+  userId?: string;
+  pokemons?: TeamPokemonData[];
 };
 
 export type TeamByTokenData = Pick<TeamData, 'pokemons' | 'name'>;

@@ -25,7 +25,12 @@ export const useGetRegionById = (id: string) => {
   return useQuery<RegionDetailData, AxiosError>(
     CachePokemonTagEnum.RegionById,
     async () => (await pokemonServer.get(`${REGION_API_PREFIX}/${id}`)).data,
-    { enabled: Boolean(id), retry: false }
+    {
+      enabled: Boolean(id),
+      retry: false,
+      refetchOnWindowFocus: (error) =>
+        (error as unknown as any)?.state?.error?.response?.status !== 404,
+    }
   );
 };
 

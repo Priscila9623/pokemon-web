@@ -15,8 +15,14 @@ import './style.scss';
 
 function TeamsByRegion() {
   const { regionId } = useParams();
-  const { data, isLoading, refetch } = useGetTeamsByRegionUser(regionId!);
-  const { error } = useGetRegionById(regionId!);
+  const {
+    data: regionData,
+    isLoading: isLoadingRegion,
+    error,
+  } = useGetRegionById(regionId!);
+  const { data, isLoading, refetch } = useGetTeamsByRegionUser(
+    regionData?.name!
+  );
 
   if (error?.response?.status === 404)
     return (
@@ -38,7 +44,7 @@ function TeamsByRegion() {
         refetch={refetch}
         regionId={regionId}
         data={data}
-        loading={isLoading}
+        loading={isLoadingRegion || isLoading}
         route={TeamDetailPrevRouteEnum.Regions}
       />
     </div>

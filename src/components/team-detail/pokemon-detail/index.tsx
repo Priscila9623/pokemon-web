@@ -20,7 +20,7 @@ function PokemonDetail(props: PokemonDetailProps) {
   const { isLoading, data } = useGetPokemonById(pokemonId!);
   const [showMore, setShowMore] = useState(false);
   const showButton = useMemo(
-    () => count < MAX_TEAM_COUNT + 1 && !team.includes(pokemonId!),
+    () => count < MAX_TEAM_COUNT && !team.includes(pokemonId!),
     [pokemonId, count]
   );
   const color = useMemo(() => getListColor(data?.name!), [data?.name!]);

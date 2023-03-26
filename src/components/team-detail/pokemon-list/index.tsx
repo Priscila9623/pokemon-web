@@ -12,7 +12,7 @@ import { PokemonListProps } from './types';
 
 function PokemonList(props: PokemonListProps) {
   const { onClickItem, regionId } = props;
-  const { isLoading, data } = useGetPokemonsByRegions(regionId);
+  const { isLoading, isFetching, data } = useGetPokemonsByRegions(regionId);
 
   const selectPokemon = (id: string) => {
     onClickItem(id);
@@ -44,7 +44,7 @@ function PokemonList(props: PokemonListProps) {
         <Spin
           tip="Cargando pokemons de la región"
           size="small"
-          spinning={isLoading}
+          spinning={isLoading || isFetching}
         >
           <ConfigProvider renderEmpty={customizeRenderEmpty}>
             <List
@@ -57,7 +57,7 @@ function PokemonList(props: PokemonListProps) {
                 xl: 4,
                 xxl: 4,
               }}
-              dataSource={data || []}
+              dataSource={data && !isFetching ? data : []}
               renderItem={renderItem}
             />
           </ConfigProvider>
