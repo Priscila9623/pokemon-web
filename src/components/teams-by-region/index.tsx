@@ -15,7 +15,7 @@ import './style.scss';
 
 function TeamsByRegion() {
   const { regionId } = useParams();
-  const { data, isLoading } = useGetTeamsByRegionUser(regionId!);
+  const { data, isLoading, refetch } = useGetTeamsByRegionUser(regionId!);
   const { error } = useGetRegionById(regionId!);
 
   if (error?.response?.status === 404)
@@ -35,6 +35,7 @@ function TeamsByRegion() {
       </div>
       <Actions />
       <TeamsList
+        refetch={refetch}
         regionId={regionId}
         data={data}
         loading={isLoading}

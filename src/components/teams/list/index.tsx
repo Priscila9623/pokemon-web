@@ -17,15 +17,20 @@ import './style.scss';
 import { TeamsListProps } from './types';
 
 function TeamsList(props: TeamsListProps) {
-  const { regionId, data = [], readonly, loading, route } = props;
+  const { regionId, data = [], readonly, loading, route, refetch } = props;
   const [deleteModal, setDeleteModal] = useState({ id: '', visible: false });
 
   const closeDeleteModal = () => {
     setDeleteModal({ id: '', visible: false });
   };
 
+  const onSuccessDelete = () => {
+    if (refetch) refetch();
+    closeDeleteModal();
+  };
+
   const { mutate: deleteTeam, isLoading: isLoadingDelete } = useDeleteTeam({
-    onSuccess: closeDeleteModal,
+    onSuccess: onSuccessDelete,
   });
 
   const onDelete = () => {

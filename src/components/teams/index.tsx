@@ -9,7 +9,7 @@ import TeamsList from './list';
 import './style.scss';
 
 function Teams() {
-  const { data, isLoading } = useGetTeamsByUser();
+  const { data, isLoading, refetch } = useGetTeamsByUser();
   return (
     <div className="Teams">
       <div className="Teams__title">
@@ -17,6 +17,7 @@ function Teams() {
         <Title text="Mis equipos" className="Teams__text" />
       </div>
       <TeamsList
+        refetch={refetch}
         data={data}
         loading={isLoading}
         route={TeamDetailPrevRouteEnum.Teams}

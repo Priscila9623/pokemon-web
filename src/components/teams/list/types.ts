@@ -6,4 +6,5 @@ export type TeamsListProps = {
   readonly?: boolean;
   loading: boolean;
   route?: string;
+  refetch: () => void;
 };
