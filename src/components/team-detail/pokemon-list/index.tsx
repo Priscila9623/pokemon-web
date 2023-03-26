@@ -10,10 +10,6 @@ import Character from '../character';
 import './style.scss';
 import { PokemonListProps } from './types';
 
-const customizeRenderEmpty = () => (
-  <EmptyViewList message="Parece que esta región se quedo sin pokemons" />
-);
-
 function PokemonList(props: PokemonListProps) {
   const { onClickItem, regionId } = props;
   const { isLoading, data } = useGetPokemonsByRegions(regionId);
@@ -21,6 +17,16 @@ function PokemonList(props: PokemonListProps) {
   const selectPokemon = (id: string) => {
     onClickItem(id);
   };
+
+  const customizeRenderEmpty = useCallback(
+    () => (
+      <EmptyViewList
+        message="Parece que esta región se quedo sin pokemons"
+        loading={isLoading}
+      />
+    ),
+    [isLoading]
+  );
 
   const renderItem = useCallback(
     (item: string) => (

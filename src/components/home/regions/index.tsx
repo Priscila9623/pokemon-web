@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { List, Spin } from 'antd';
+import cx from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { useGetRegions } from '@api/services/region-api';
@@ -14,24 +15,36 @@ import './style.scss';
 function Regions() {
   const { isLoading, data } = useGetRegions();
 
+  const regionsList: Partial<RegionResultsData>[] = useMemo(
+    () => [...(data?.results ?? []), { name: 'Todos' }],
+    [data?.count]
+  );
+
   const renderItem = useCallback(
-    (item: RegionResultsData) => (
-      <List.Item>
-        <Link to={`region/${item.name}`}>
-          <PokemonCard color={getListColor(item.name)}>
-            <div className="Home-regions__name">{item.name}</div>
-          </PokemonCard>
-        </Link>
-      </List.Item>
-    ),
-    []
+    (item: Partial<RegionResultsData>, index: number) => {
+      const isLast = index === (regionsList?.length ?? 0) - 1;
+      return (
+        <List.Item>
+          <Link to={isLast ? '/teams' : `region/${item.name}`}>
+            <PokemonCard
+              color={!isLast ? getListColor(item.name) : undefined}
+              className={cx({ 'Home-regions__item-last': isLast })}
+            >
+              <div className="Home-regions__name">{item.name}</div>
+            </PokemonCard>
+          </Link>
+        </List.Item>
+      );
+    },
+    [data?.count]
   );
 
   return (
     <div className="Home-regions">
-      <Title text="Regiones" />
+      <Title text="Encuentra tus equipos por regiones" />
       <Spin tip="Cargando regiones" size="small" spinning={isLoading}>
-        <List<RegionResultsData>
+        <List<Partial<RegionResultsData>>
+          className="Home-regions__list"
           grid={{
             gutter: 16,
             xs: 1,
@@ -41,7 +54,7 @@ function Regions() {
             xl: 4,
             xxl: 4,
           }}
-          dataSource={data?.results ?? []}
+          dataSource={regionsList}
           renderItem={renderItem}
         />
       </Spin>

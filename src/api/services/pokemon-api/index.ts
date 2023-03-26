@@ -3,12 +3,12 @@ import { useQuery } from 'react-query';
 import pokemonServer from '@api/pokemonServer';
 import CachePokemonTagEnum from '@enums/cache-pokemon-tag-enum';
 
-import { PokemonData, PokemonSpecieData } from './types';
+import { PokemonData, PokemonResponseData, PokemonSpecieData } from './types';
 
 const POKEMON_API_PREFIX = '/pokemon';
 
 export const useGetPokemonById = (id: string) => {
-  return useQuery<PokemonData, Error>(
+  return useQuery<PokemonResponseData, Error>(
     [CachePokemonTagEnum.PokemonById, id],
     async () => {
       const pokemonData: PokemonData = (
@@ -30,9 +30,11 @@ export const useGetPokemonById = (id: string) => {
         ''
       );
 
+      const types = pokemonData.types.map((t) => t.type.name);
       return {
         ...pokemonData,
         description: specieEsData.replace(/\n/g, ' '),
+        types,
       };
     },
     { enabled: Boolean(id) }

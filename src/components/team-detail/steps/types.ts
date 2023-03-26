@@ -8,4 +8,5 @@ export type StepsProps = {
   items: StepData[];
   onBack: () => void;
   onSave: () => void;
+  saveLoading: boolean;
 };

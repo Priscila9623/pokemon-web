@@ -27,11 +27,10 @@ function PokemonDetail(props: PokemonDetailProps) {
 
   const onAddPokemon = () => {
     onAdd({
-      id: String(data?.id) ?? '',
       name: data?.name ?? '',
       types: data?.types,
-      image: data?.sprites.front_default,
-      description: data?.description,
+      img: data?.sprites.front_default,
+      order: data?.order,
     });
   };
 

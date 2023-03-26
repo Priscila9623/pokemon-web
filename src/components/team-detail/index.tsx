@@ -1,12 +1,20 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { nanoid } from 'nanoid';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
+import {
+  useAddTeam,
+  useGetTeamById,
+  useUpdateTeam,
+} from '@api/services/firebase/teams-api';
+import { TeamPokemonData } from '@api/services/firebase/teams-api/types';
 import { useGetRegionById } from '@api/services/region-api';
 import ResourceNotFound from '@components/error-view/resource-not-found';
 import Title from '@components/title';
+import TeamDetailPrevRouteEnum from '@enums/team-details-prev-route-enum';
+import { auth } from '@services/firebase/firebase';
 
-import { CharacterData } from './character/types';
 import MyTeam from './my-team';
 import Name from './name';
 import PokemonDetail from './pokemon-detail';
@@ -14,18 +22,41 @@ import PokemonList from './pokemon-list';
 import Steps from './steps';
 import { StepData } from './steps/types';
 import './style.scss';
-import { MIN_TEAM_COUNT, PokemonTeamData } from './types';
-
-const team = '1';
+import { MIN_TEAM_COUNT, CurrentTeamData } from './types';
 
 function Teams() {
+  const user = auth.currentUser;
   const { teamId, regionId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { error, data: regionData } = useGetRegionById(regionId!);
+  const {
+    error: teamError,
+    data: teamData,
+    isLoading,
+  } = useGetTeamById(teamId!);
+  const regionName = regionId || teamData?.name;
+
+  const navigateToPreviousRoute = () => {
+    const defaultRoute = TeamDetailPrevRouteEnum.Regions;
+    const route =
+      (location.state.prevRoute ?? defaultRoute) ===
+      TeamDetailPrevRouteEnum.Regions
+        ? `/region/${regionName}`
+        : '/teams';
+    navigate(route, { replace: true });
+  };
+
+  const { mutate: addTeam, isLoading: isLoadingAdd } = useAddTeam({
+    onSuccess: navigateToPreviousRoute,
+  });
+  const { mutate: updateTeam, isLoading: isLoadingUpdate } = useUpdateTeam({
+    onSuccess: navigateToPreviousRoute,
+  });
 
   const [open, setOpen] = useState(false);
   const [selectedPokemon, setSelectedPokemon] = useState<string>();
-  const [currentTeam, setCurrentTeam] = useState<PokemonTeamData>({
+  const [currentTeam, setCurrentTeam] = useState<CurrentTeamData>({
     name: '',
     pokemons: [],
   });
@@ -39,7 +70,7 @@ function Teams() {
     () => [
       {
         description: 'Añade el nombre de tu equipo',
-        conditionToBeCompleted: () => currentTeam.name.length > 0,
+        conditionToBeCompleted: () => (currentTeam.name?.length || 0) > 0,
         inProgress: false,
       },
       {
@@ -54,7 +85,26 @@ function Teams() {
     [currentTeam.name, currentTeam.pokemons.length]
   );
 
-  const onSaveTeam = () => {};
+  const onSaveTeam = () => {
+    if (teamData?.id) {
+      updateTeam({
+        id: teamData.id,
+        team: {
+          ...teamData,
+          ...currentTeam,
+        },
+      });
+      return;
+    }
+
+    addTeam({
+      ...currentTeam,
+      regionName: regionId!,
+      regionUser: `${regionId}_${user?.uid}`,
+      userId: user?.uid!,
+      token: `${user?.uid.slice(0, 5)}-${regionId!}-${nanoid(4)}`,
+    });
+  };
 
   const onGoBack = () => {
     navigate(-1);
@@ -76,7 +126,7 @@ function Teams() {
     }));
   };
 
-  const onAddPokemon = (pokemon: CharacterData) => {
+  const onAddPokemon = (pokemon: TeamPokemonData) => {
     const currentPokemons = currentTeam.pokemons.slice();
     setCurrentTeam((prev) => ({
       ...prev,
@@ -85,9 +135,9 @@ function Teams() {
     onClose();
   };
 
-  const onDeletePokemon = (id: string) => {
+  const onDeletePokemon = (name: string) => {
     const currentPokemons = currentTeam.pokemons.slice();
-    const index = currentPokemons.findIndex((item) => item.id === id);
+    const index = currentPokemons.findIndex((item) => item.name === name);
     currentPokemons.splice(index, 1);
     setCurrentTeam((prev) => ({
       ...prev,
@@ -95,27 +145,44 @@ function Teams() {
     }));
   };
 
+  const initializeTeam = () => {
+    setCurrentTeam({
+      pokemons: teamData?.pokemons || [],
+      name: teamData?.name!,
+    });
+  };
+
+  useEffect(() => {
+    if (teamData?.id) initializeTeam();
+  }, [teamData?.id]);
+
   if (!regionData) return <div />;
 
-  if (error?.response?.status === 404 || team === teamId)
+  if (error?.response?.status === 404 || teamError)
     return (
       <ResourceNotFound message="No pudimos encontrar lo que estás buscando" />
     );
 
   return (
     <div className="Team-detail">
-      <Title text={`Equipo en la región ${regionId!}`} />
+      <Title text={`Equipo en la región ${regionName!}`} />
       <div className="Team-detail__container">
-        <Steps items={steps} onSave={onSaveTeam} onBack={onGoBack} />
-        <Name teamName={teamId} onChange={onChangeName} />
+        <Steps
+          items={steps}
+          onSave={onSaveTeam}
+          onBack={onGoBack}
+          saveLoading={isLoadingAdd || isLoadingUpdate}
+        />
+        <Name teamName={currentTeam.name} onChange={onChangeName} />
       </div>
       <MyTeam
         data={currentTeam?.pokemons}
         onClickItem={showDrawer}
         onDelete={onDeletePokemon}
+        loading={isLoading}
       />
       <div className="Team-detail__container">
-        <PokemonList onClickItem={showDrawer} regionId={regionId!} />
+        <PokemonList onClickItem={showDrawer} regionId={regionName!} />
       </div>
       <PokemonDetail
         pokemonId={selectedPokemon}

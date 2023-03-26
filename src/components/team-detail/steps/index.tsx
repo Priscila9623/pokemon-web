@@ -7,7 +7,7 @@ import './style.scss';
 import { StepData, StepsProps } from './types';
 
 function Steps(props: StepsProps) {
-  const { items, onBack, onSave } = props;
+  const { items, onBack, onSave, saveLoading } = props;
   const currentStep = items.findIndex(
     (s) => s.inProgress || !s.conditionToBeCompleted()
   );
@@ -50,6 +50,7 @@ function Steps(props: StepsProps) {
         disabled={!allStepsCompleted}
         className="Team-detail-steps__button Team-detail-steps__button--save"
         onClick={onSave}
+        loading={saveLoading}
       />
     </div>
   );

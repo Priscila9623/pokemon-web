@@ -13,6 +13,11 @@ export type PokemonSpritesData = {
   front_default: string;
 };
 
+export type PokemonTypesData = {
+  slot: number;
+  type: PokemonUrlData;
+};
+
 export type PokemonData = {
   abilities: PokemonAbilitiesData[];
   base_experience: number;
@@ -25,6 +30,11 @@ export type PokemonData = {
   weight: number;
   species: PokemonUrlData;
   description: string;
+  types: PokemonTypesData[];
+};
+
+export type PokemonResponseData = Omit<PokemonData, 'types'> & {
+  types: string[];
 };
 
 export type PokemonFlavorTextEntriesData = {

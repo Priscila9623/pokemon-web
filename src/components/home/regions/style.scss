@@ -6,16 +6,18 @@
     font-size: $size-18;
     font-weight: 500;
     color: $white;
+    text-transform: capitalize;
   }
   &__list {
-    display: flex;
-    flex-wrap: wrap;
-    &__name {
-      font-family: $work-sans;
-      font-size: $size-18;
-      font-weight: 500;
-      color: $white;
-      text-transform: capitalize;
-    }
+    margin-top: 40px !important;
+  }
+  &__item-last {
+    background: rgb(255, 207, 74);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 207, 74, 1) 0%,
+      rgba(117, 215, 196, 1) 35%,
+      rgba(251, 108, 108, 1) 100%
+    );
   }
 }

@@ -13,7 +13,7 @@ function Pokemons(props: PokemonsProps) {
   return (
     <div className="Teams-pokemons">
       {data.map((item) => (
-        <Tooltip title={item.name} key={item.id}>
+        <Tooltip title={item.name} key={item.name}>
           <img
             src={item.img || pokeball}
             alt={`${item.name} pokemon`}

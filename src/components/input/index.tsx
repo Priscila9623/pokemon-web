@@ -14,7 +14,7 @@ function Input(props: InputProps) {
 
   return (
     <InputAntd
-      defaultValue={value}
+      value={value}
       placeholder={placeholder}
       className={`Input ${className}`}
       onChange={onChangeText}

@@ -38,9 +38,9 @@ function Character(props: CharacterProps) {
           </div>
         </div>
         <img
-          src={data.image ?? pokeball}
+          src={data.img ?? pokeball}
           className={cx('Team-detail-character__img', {
-            'Team-detail-character__img--non-empty': Boolean(data.image),
+            'Team-detail-character__img--non-empty': Boolean(data.img),
           })}
           alt="Pokemon showing who this pokemon is"
         />

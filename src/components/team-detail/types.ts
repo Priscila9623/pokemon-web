@@ -1,8 +1,8 @@
-import { CharacterData } from './character/types';
+import { TeamPokemonData } from '@api/services/firebase/teams-api/types';
 
-export type PokemonTeamData = {
+export type CurrentTeamData = {
   name: string;
-  pokemons: CharacterData[];
+  pokemons: TeamPokemonData[];
 };
 
 export const MAX_TEAM_COUNT = 6;

@@ -108,7 +108,8 @@
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "no-restricted-imports": "off",
-    "@typescript-eslint/no-restricted-imports": "error"
+    "@typescript-eslint/no-restricted-imports": "error",
+    "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "import/resolver": {

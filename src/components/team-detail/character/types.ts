@@ -1,12 +1,6 @@
-export type CharacterData = {
-  id?: string;
-  name: string;
-  types?: string[];
-  image?: string;
-  description?: string;
-};
+import { TeamPokemonData } from '@api/services/firebase/teams-api/types';
 
 export type CharacterProps = {
-  data: CharacterData;
+  data: TeamPokemonData;
   onClick: (id: string) => void;
 };

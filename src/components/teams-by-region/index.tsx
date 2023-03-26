@@ -2,29 +2,23 @@ import React from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import { useGetTeamsByRegionUser } from '@api/services/firebase/teams-api';
+import { useGetRegionById } from '@api/services/region-api';
 import ResourceNotFound from '@components/error-view/resource-not-found';
 import GoBack from '@components/go-back';
 import TeamsList from '@components/teams/list';
 import Title from '@components/title';
+import TeamDetailPrevRouteEnum from '@enums/team-details-prev-route-enum';
 
 import Actions from './actions';
 import './style.scss';
 
-const data = Array.from({ length: 10 }, (_, i) => ({
-  name: `Team ${i + 1}`,
-  id: `t_${i + 1}`,
-  members: Array.from({ length: 6 }, (m, j) => ({
-    name: 'Squirtle',
-    img: '',
-    id: `p_${j + 1}`,
-  })),
-}));
-
-const num = '1';
-
 function TeamsByRegion() {
   const { regionId } = useParams();
-  if (num === regionId)
+  const { data, isLoading } = useGetTeamsByRegionUser(regionId!);
+  const { error } = useGetRegionById(regionId!);
+
+  if (error?.response?.status === 404)
     return (
       <ResourceNotFound
         message={`No pudimos encontrar la región ${regionId}`}
@@ -40,7 +34,12 @@ function TeamsByRegion() {
         />
       </div>
       <Actions />
-      <TeamsList regionId={regionId} data={data} />
+      <TeamsList
+        regionId={regionId}
+        data={data}
+        loading={isLoading}
+        route={TeamDetailPrevRouteEnum.Regions}
+      />
     </div>
   );
 }

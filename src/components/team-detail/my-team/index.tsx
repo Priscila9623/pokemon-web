@@ -3,24 +3,26 @@ import React, { useCallback } from 'react';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Empty, List } from 'antd';
 
+import { TeamPokemonData } from '@api/services/firebase/teams-api/types';
+import charmanderSpinning from '@assets/pokemon-charmander-spinning.gif';
 import psyduckSad from '@assets/pokemon-psyduck-sad.png';
 import Title from '@components/title';
 
 import Character from '../character';
-import { CharacterData } from '../character/types';
+import { MAX_TEAM_COUNT, MIN_TEAM_COUNT } from '../types';
 
 import './style.scss';
 import { MyTeamProps } from './types';
 
 function MyTeam(props: MyTeamProps) {
-  const { data, onClickItem, onDelete } = props;
+  const { data, onClickItem, onDelete, loading } = props;
 
   const onDeletePokemon = (id: string) => {
     onDelete(id);
   };
 
   const renderItem = useCallback(
-    (item: CharacterData) => (
+    (item: TeamPokemonData) => (
       <List.Item>
         <div className="Team-detail-my-team__card">
           <Button
@@ -34,14 +36,22 @@ function MyTeam(props: MyTeamProps) {
         </div>
       </List.Item>
     ),
-    []
+    [data.length]
   );
 
   return (
     <div className="Team-detail-my-team">
-      <Title text="2 | Elegidos" />
-      {!data.length ? (
-        <Empty image={psyduckSad} description="Aún no tienes un equipo" />
+      <Title
+        text="2 | Elegidos"
+        description={`Puedes escoger entre ${MIN_TEAM_COUNT} a ${MAX_TEAM_COUNT} integrantes.`}
+      />
+      {!data.length || loading ? (
+        <Empty
+          image={loading ? charmanderSpinning : psyduckSad}
+          description={
+            loading ? 'Cargando tu equipo' : 'Aún no tienes un equipo'
+          }
+        />
       ) : (
         <List
           dataSource={data}

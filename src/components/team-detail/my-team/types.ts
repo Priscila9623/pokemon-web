@@ -1,7 +1,8 @@
-import { CharacterData } from '../character/types';
+import { TeamPokemonData } from '@api/services/firebase/teams-api/types';
 
 export type MyTeamProps = {
-  data: CharacterData[];
+  data: TeamPokemonData[];
   onClickItem: (id: string) => void;
   onDelete: (id: string) => void;
+  loading: boolean;
 };

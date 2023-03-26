@@ -8,8 +8,8 @@ import './style.scss';
 import { EmptyViewListProps } from './types';
 
 function EmptyViewList(props: EmptyViewListProps) {
-  const { message } = props;
+  const { message, loading } = props;
 
-  return <Empty image={squirtle} description={message} />;
+  return <Empty image={squirtle} description={loading ? '' : message} />;
 }
 export default EmptyViewList;
