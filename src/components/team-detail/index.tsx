@@ -1,11 +1,17 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
 import { nanoid } from 'nanoid';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 
 import {
   useAddTeam,
   useGetTeamById,
+  useGetTeamByToken,
   useUpdateTeam,
 } from '@api/services/firebase/teams-api';
 import { TeamPokemonData } from '@api/services/firebase/teams-api/types';
@@ -36,23 +42,12 @@ function Teams() {
     isLoading,
   } = useGetTeamById(teamId!);
   const regionName = regionId || teamData?.name;
-
-  const navigateToPreviousRoute = () => {
-    const defaultRoute = TeamDetailPrevRouteEnum.Regions;
-    const route =
-      (location.state.prevRoute ?? defaultRoute) ===
-      TeamDetailPrevRouteEnum.Regions
-        ? `/region/${regionName}`
-        : '/teams';
-    navigate(route, { replace: true });
-  };
-
-  const { mutate: addTeam, isLoading: isLoadingAdd } = useAddTeam({
-    onSuccess: navigateToPreviousRoute,
-  });
-  const { mutate: updateTeam, isLoading: isLoadingUpdate } = useUpdateTeam({
-    onSuccess: navigateToPreviousRoute,
-  });
+  const [searchParams] = useSearchParams();
+  const {
+    error: teamByTokenError,
+    data: teamByTokenData,
+    isLoading: isLoadingTeamByToken,
+  } = useGetTeamByToken(searchParams.get('token')!);
 
   const [open, setOpen] = useState(false);
   const [selectedPokemon, setSelectedPokemon] = useState<string>();
@@ -65,6 +60,23 @@ function Teams() {
     () => currentTeam.pokemons.map((item) => item.name),
     [currentTeamCount]
   );
+
+  const navigateToPreviousRoute = () => {
+    const defaultRoute = TeamDetailPrevRouteEnum.Regions;
+    const route =
+      (location.state?.prevRoute || defaultRoute) ===
+      TeamDetailPrevRouteEnum.Regions
+        ? `/region/${regionName}`
+        : '/teams';
+    navigate(route, { replace: true });
+  };
+
+  const { mutate: addTeam, isLoading: isLoadingAdd } = useAddTeam({
+    onSuccess: navigateToPreviousRoute,
+  });
+  const { mutate: updateTeam, isLoading: isLoadingUpdate } = useUpdateTeam({
+    onSuccess: navigateToPreviousRoute,
+  });
 
   const steps: StepData[] = useMemo(
     () => [
@@ -147,18 +159,18 @@ function Teams() {
 
   const initializeTeam = () => {
     setCurrentTeam({
-      pokemons: teamData?.pokemons || [],
-      name: teamData?.name!,
+      pokemons: (teamData || teamByTokenData)?.pokemons || [],
+      name: (teamData || teamByTokenData)?.name!,
     });
   };
 
   useEffect(() => {
-    if (teamData?.id) initializeTeam();
-  }, [teamData?.id]);
+    if (teamData?.id || teamByTokenData?.name) initializeTeam();
+  }, [teamData?.id, teamByTokenData?.name]);
 
   if (!regionData) return <div />;
 
-  if (error?.response?.status === 404 || teamError)
+  if (error?.response?.status === 404 || teamError || teamByTokenError)
     return (
       <ResourceNotFound message="No pudimos encontrar lo que estás buscando" />
     );
@@ -179,7 +191,7 @@ function Teams() {
         data={currentTeam?.pokemons}
         onClickItem={showDrawer}
         onDelete={onDeletePokemon}
-        loading={isLoading}
+        loading={isLoading || isLoadingTeamByToken}
       />
       <div className="Team-detail__content">
         <PokemonList onClickItem={showDrawer} regionId={regionName!} />

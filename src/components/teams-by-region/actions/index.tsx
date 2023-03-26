@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PlusOutlined, UserAddOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { Link, useParams } from 'react-router-dom';
 
@@ -25,14 +25,6 @@ function Actions() {
           Nuevo equipo
         </Button>
       </Link>
-      <Button
-        type="primary"
-        shape="round"
-        icon={<UserAddOutlined />}
-        className="Teams-by-region-actions__button Teams-by-region-actions__button--friend"
-      >
-        Equipo de un amigo
-      </Button>
     </div>
   );
 }

@@ -14,3 +14,5 @@ export type TeamData = {
   userId: string;
   pokemons: TeamPokemonData[];
 };
+
+export type TeamByTokenData = Pick<TeamData, 'pokemons' | 'name'>;

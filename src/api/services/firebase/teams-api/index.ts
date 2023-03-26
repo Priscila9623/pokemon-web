@@ -9,13 +9,14 @@ import {
   get,
   child,
   set,
+  limitToFirst,
 } from 'firebase/database';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import CacheTeamTagEnum from '@enums/cache-teams-tag-enum';
 import { auth, db } from '@services/firebase/firebase';
 
-import { TeamData } from './types';
+import { TeamByTokenData, TeamData } from './types';
 
 const NODE = 'teams';
 
@@ -72,6 +73,30 @@ export const useGetTeamById = (idTeam: string) => {
       return { ...snap.val(), id: idTeam };
     },
     { enabled: Boolean(idTeam), retry: false }
+  );
+};
+
+export const useGetTeamByToken = (token: string) => {
+  return useQuery<TeamByTokenData, Error>(
+    `${CacheTeamTagEnum.Teams}-${token}`,
+    async () => {
+      const queryRef = query(
+        ref(db, NODE),
+        orderByChild('token'),
+        equalTo(token),
+        limitToFirst(1)
+      );
+      const snap = await get(queryRef);
+
+      if (!snap.exists()) {
+        throw new Error('Not found');
+      }
+
+      const team = Object.values(snap.val())[0] as unknown as TeamByTokenData;
+
+      return { name: team.name, pokemons: team.pokemons };
+    },
+    { enabled: Boolean(token), retry: false, cacheTime: 0 }
   );
 };
 
