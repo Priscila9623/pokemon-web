@@ -13,9 +13,9 @@ function AuthStateLayout() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const closeSession = () => {
+  const closeSession = async () => {
     try {
-      signOut();
+      await signOut();
       navigate('/login', { replace: true });
     } catch (error) {
       // something wrong
