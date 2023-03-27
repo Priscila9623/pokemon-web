@@ -104,7 +104,6 @@ El proyecto utiliza la [API de Pokemón](https://pokeapi.co/) para obtener infor
 - **src:** Esta carpeta es la principal y contiene todo el código de la aplicación.
   - **assets:** Carpeta que contiene las imágenes, svgs, etc.
   - **api:** Archivos relacionados a los servicios.
-  - **auth:** Aca se encuentran los archivos relacionados con la autenticación, asi como el manejo de rutas privadas.
   - **components:** Contiene cualquier componente común que se utilice en la aplicación.
   - **constants:** Carpeta que contiene las constantes.
   - **custom-types:** Aqui se ubican los tipos generales propios.

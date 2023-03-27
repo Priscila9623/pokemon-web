@@ -28,7 +28,6 @@
       "@pages/*": ["pages/*"],
       "@theme/*": ["theme/*"],
       "@layout/*": ["layout/*"],
-      "@auth/*": ["auth/*"],
       "@api/*": ["api/*"],
       "@services/*": ["services/*"]
     }

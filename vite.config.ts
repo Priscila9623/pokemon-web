@@ -22,7 +22,6 @@ export default defineConfig({
       '@pages': `${path.resolve(dirname, './src/pages/')}`,
       '@theme': `${path.resolve(dirname, './src/theme/')}`,
       '@layout': `${path.resolve(dirname, './src/layout/')}`,
-      '@auth': `${path.resolve(dirname, './src/auth/')}`,
       '@api': `${path.resolve(dirname, './src/api/')}`,
       '@services': `${path.resolve(dirname, './src/services/')}`,
     },

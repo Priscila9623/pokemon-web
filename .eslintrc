@@ -82,10 +82,6 @@
             "group": "internal"
           },
           {
-            "pattern": "@auth/**",
-            "group": "internal"
-          },
-          {
             "pattern": "@services/**",
             "group": "internal"
           },
