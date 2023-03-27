@@ -28,8 +28,8 @@ function PokemonList(props: PokemonListProps) {
       setResults(data!);
       return;
     }
-    const resultsCopy = results.slice();
-    const filteredResults = resultsCopy.filter((x) => x.includes(search));
+    const dataCopy = (data ?? []).slice();
+    const filteredResults = dataCopy.filter((x) => x.includes(search));
     setResults(filteredResults);
   };
 
