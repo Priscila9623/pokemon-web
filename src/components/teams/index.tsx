@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useGetTeamsByUser } from '@api/services/firebase/teams-api';
+import { useGetTeamsByUser } from '@api/firebase/teams-api';
 import GoBack from '@components/go-back';
 import Title from '@components/title';
 import TeamDetailPrevRouteEnum from '@enums/team-details-prev-route-enum';

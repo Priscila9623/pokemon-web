@@ -8,7 +8,7 @@ import {
 import { Button, ConfigProvider, List, message, Modal, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { useDeleteTeam } from '@api/services/firebase/teams-api';
+import { useDeleteTeam } from '@api/firebase/teams-api';
 import EmptyViewList from '@components/empty-view/list';
 
 import Pokemons from '../pokemons';
@@ -42,13 +42,13 @@ function TeamsList(props: TeamsListProps) {
     setDeleteModal({ id, visible: true });
   };
 
-  const onShare = (token: string) => {
+  const onShare = ({ token, region }: { token: string; region: string }) => {
     if (navigator.share) {
       try {
         navigator.share({
           title: 'Pokemon web',
-          text: `Te comparto mi equipo de la región ${regionId}`,
-          url: `http://127.0.0.1:5173/region/${regionId}/teams/new?token=${token}`,
+          text: `Te comparto mi equipo de la región ${region}`,
+          url: `http://127.0.0.1:5173/region/${region}/teams/new?token=${token}`,
         });
       } catch (error) {
         messageApi.open({
@@ -90,7 +90,12 @@ function TeamsList(props: TeamsListProps) {
                         icon={<ShareAltOutlined />}
                         size="middle"
                         className="Teams-list__share"
-                        onClick={() => onShare(item.token!)}
+                        onClick={() =>
+                          onShare({
+                            token: item.token!,
+                            region: item.regionName!,
+                          })
+                        }
                       />
                       <Link
                         to={`/region/${item.regionName}/teams/${item.id}`}
@@ -126,7 +131,7 @@ function TeamsList(props: TeamsListProps) {
                   </div>
                   <div>
                     <Pokemons
-                      data={item.pokemons?.map((m) => ({
+                      data={(item.pokemons ?? [])?.map((m) => ({
                         name: m.name,
                         img: m.img,
                       }))}

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import { ConfigProvider, Divider, Input, List, Spin } from 'antd';
 
-import { useGetPokemonsByRegions } from '@api/services/region-api';
+import { useGetPokemonsByRegions } from '@api/pokemon/region-api';
 import EmptyViewList from '@components/empty-view/list';
 
 import Character from '../character';

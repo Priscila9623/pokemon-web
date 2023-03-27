@@ -8,8 +8,8 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 
-import { useAddTeam, useUpdateTeam } from '@api/services/firebase/teams-api';
-import { TeamPokemonData } from '@api/services/firebase/teams-api/types';
+import { useAddTeam, useUpdateTeam } from '@api/firebase/teams-api';
+import { TeamPokemonData } from '@api/firebase/teams-api/types';
 import ResourceNotFound from '@components/error-view/resource-not-found';
 import Title from '@components/title';
 import TeamDetailPrevRouteEnum from '@enums/team-details-prev-route-enum';

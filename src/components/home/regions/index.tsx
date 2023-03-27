@@ -4,8 +4,8 @@ import { List, Spin } from 'antd';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { useGetRegions } from '@api/services/region-api';
-import { RegionResultsData } from '@api/services/region-api/types';
+import { useGetRegions } from '@api/pokemon/region-api';
+import { RegionResultsData } from '@api/pokemon/region-api/types';
 import PokemonCard from '@components/pokemon-card';
 import Title from '@components/title';
 import getListColor from '@utils/list-color';

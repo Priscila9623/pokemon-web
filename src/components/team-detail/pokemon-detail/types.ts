@@ -1,4 +1,4 @@
-import { TeamPokemonData } from '@api/services/firebase/teams-api/types';
+import { TeamPokemonData } from '@api/firebase/teams-api/types';
 
 export type PokemonDetailProps = {
   pokemonId?: string;

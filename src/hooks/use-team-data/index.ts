@@ -1,8 +1,5 @@
-import {
-  useGetTeamById,
-  useGetTeamByToken,
-} from '@api/services/firebase/teams-api';
-import { useGetRegionById } from '@api/services/region-api';
+import { useGetTeamById, useGetTeamByToken } from '@api/firebase/teams-api';
+import { useGetRegionById } from '@api/pokemon/region-api';
 
 import { TeamDataHookParams, TeamDataHookReturnType } from './types';
 

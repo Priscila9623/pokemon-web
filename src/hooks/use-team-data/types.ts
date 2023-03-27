@@ -1,4 +1,4 @@
-import { TeamData } from '@api/services/firebase/teams-api/types';
+import { TeamData } from '@api/firebase/teams-api/types';
 
 export type TeamDataHookParams = {
   teamId?: string;

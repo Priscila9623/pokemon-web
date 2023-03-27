@@ -1,4 +1,4 @@
-import { PokemonUrlData } from '@api/pokemon-common-types';
+import { PokemonUrlData } from '../pokemon-common-types';
 
 export type PokemonAbilitiesData = {
   ability: {

@@ -1,7 +1,8 @@
 import { useQuery } from 'react-query';
 
-import pokemonServer from '@api/pokemonServer';
 import CachePokemonTagEnum from '@enums/cache-pokemon-tag-enum';
+
+import pokemonServer from '../pokemonServer';
 
 import { PokemonData, PokemonResponseData, PokemonSpecieData } from './types';
 

@@ -4,7 +4,7 @@ import { CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Drawer, Spin } from 'antd';
 import cx from 'classnames';
 
-import { useGetPokemonById } from '@api/services/pokemon-api';
+import { useGetPokemonById } from '@api/pokemon/pokemon-api';
 import pokeball from '@assets/pokeball.png';
 import pokemonBg from '@assets/pokemon-bg.png';
 import Badge from '@components/badge';

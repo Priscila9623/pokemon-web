@@ -2,8 +2,8 @@ import React from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { useGetTeamsByRegionUser } from '@api/services/firebase/teams-api';
-import { useGetRegionById } from '@api/services/region-api';
+import { useGetTeamsByRegionUser } from '@api/firebase/teams-api';
+import { useGetRegionById } from '@api/pokemon/region-api';
 import ResourceNotFound from '@components/error-view/resource-not-found';
 import GoBack from '@components/go-back';
 import TeamsList from '@components/teams/list';

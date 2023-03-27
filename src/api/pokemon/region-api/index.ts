@@ -1,9 +1,10 @@
 import { AxiosError } from 'axios';
 import { useQuery } from 'react-query';
 
-import { PokemonUrlData } from '@api/pokemon-common-types';
-import pokemonServer from '@api/pokemonServer';
 import CachePokemonTagEnum from '@enums/cache-pokemon-tag-enum';
+
+import { PokemonUrlData } from '../pokemon-common-types';
+import pokemonServer from '../pokemonServer';
 
 import {
   PokemonByAreaData,

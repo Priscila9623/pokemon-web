@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Empty, List } from 'antd';
 
-import { TeamPokemonData } from '@api/services/firebase/teams-api/types';
+import { TeamPokemonData } from '@api/firebase/teams-api/types';
 import charmanderSpinning from '@assets/pokemon-charmander-spinning.gif';
 import psyduckSad from '@assets/pokemon-psyduck-sad.png';
 import Title from '@components/title';
