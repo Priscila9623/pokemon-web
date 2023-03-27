@@ -16,7 +16,10 @@ function Regions() {
   const { isLoading, data } = useGetRegions();
 
   const regionsList: Partial<RegionResultsData>[] = useMemo(
-    () => [...(data?.results ?? []), { name: 'Todos' }],
+    () =>
+      (data?.count ?? 0) > 0
+        ? [...(data?.results ?? []), { name: 'Todos' }]
+        : [],
     [data?.count]
   );
 

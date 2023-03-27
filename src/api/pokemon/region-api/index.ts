@@ -18,7 +18,8 @@ const REGION_API_PREFIX = '/region';
 export const useGetRegions = () => {
   return useQuery<RegionData, Error>(
     CachePokemonTagEnum.Regions,
-    async () => (await pokemonServer.get(REGION_API_PREFIX)).data
+    async () => (await pokemonServer.get(REGION_API_PREFIX)).data,
+    { refetchOnWindowFocus: false }
   );
 };
 
