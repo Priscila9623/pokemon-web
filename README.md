@@ -116,3 +116,7 @@ El proyecto utiliza la [API de Pokemón](https://pokeapi.co/) para obtener infor
   - **utils:** Contiene funciones comunes utilizadas en la app como los colores aplicados a las listas.
 - **env.local:** Contiene las variables sensibles.
 - **README:** Debe incluir los pasos de la instalación, ejecución, estructura del proyecto, etc.
+
+## Manual de usuario
+
+Puedes ver como explorarlo en la web [aquí](https://scribehow.com/shared/Manual_de_usuario__Pokemon_web__fLC9rN7gTOCOyUQOn5kRQw)
