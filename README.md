@@ -1,8 +1,15 @@
 # Pokemon Web
 
-## Pasos de instalación
+## Contenido
 
-### Requerimientos
+- [Requerimientos](#requerimientos)
+- [Instalación](#instalación)
+- [Correr el proyecto](#correr-el-proyecto)
+- [Herramientas](#herramientas)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Manual de usuario](#manual-de-usuario)
+
+## Requerimientos
 
 - Versión de Node `^14.18.0` | `^16.14.0` | `>=18.0.0`.
 - NVM como gestor de versiones de Node (opcional).
@@ -10,7 +17,7 @@
 - Git.
 - Editor de código (Preferiblemente Visual Studio Code).
 
-### Instalación
+## Instalación
 
 1. En la raíz del proyecto:
 
@@ -21,7 +28,7 @@ yarn install
 
 2. Necesitarás crear un archivo `env.local` con la estructura de `env.local.example` en la raíz del proyecto.
 
-### Correr el proyecto
+## Correr el proyecto
 
 Cuando ya tenemos todo listo corremos:
 
