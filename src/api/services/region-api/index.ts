@@ -79,7 +79,7 @@ export const useGetPokemonsByRegions = (regionId: string) => {
       const uniquePokemons = Array.from(new Set(pokemons.flat(Infinity)) || []);
       return uniquePokemons;
     },
-    { enabled: Boolean(regionId) }
+    { enabled: Boolean(regionId), refetchOnWindowFocus: false }
   );
 };
 

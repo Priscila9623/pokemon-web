@@ -2,6 +2,37 @@
 
 .Team-detail-pokemon-list {
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+
+  &__items {
+    margin-top: 40px;
+  }
+  &__search {
+    min-height: 40px;
+    width: 60%;
+    align-self: center;
+    font-family: $work-sans !important;
+    @media (max-width: $breakpoint-md) {
+      width: 100%;
+    }
+  }
+  .ant-input-affix-wrapper {
+    &:hover {
+      border-color: $gray-light-600;
+    }
+    &:focus {
+      border-color: $gray-light-100;
+    }
+  }
+
+  .ant-input-affix-wrapper,
+  .ant-input {
+    background-color: $gray-light-100 !important;
+  }
+  .ant-btn {
+    background-color: $pink-500 !important;
+  }
   .ant-divider-inner-text {
     font-family: $work-sans;
   }
