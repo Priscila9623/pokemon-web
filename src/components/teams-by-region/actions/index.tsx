@@ -2,18 +2,19 @@ import React from 'react';
 
 import { PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import TeamDetailPrevRouteEnum from '@enums/team-details-prev-route-enum';
 
 import './style.scss';
+import { ActionsProps } from './types';
 
-function Actions() {
-  const { regionId } = useParams();
+function Actions(props: ActionsProps) {
+  const { regionName } = props;
   return (
     <div className="Teams-by-region-actions">
       <Link
-        to={`/region/${regionId}/teams/new`}
+        to={`/region/${regionName}/teams/new`}
         state={{ prevRoute: TeamDetailPrevRouteEnum.Regions }}
       >
         <Button

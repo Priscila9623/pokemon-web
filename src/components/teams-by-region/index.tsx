@@ -23,6 +23,7 @@ function TeamsByRegion() {
   const { data, isLoading, refetch } = useGetTeamsByRegionUser(
     regionData?.name!
   );
+  const regionName = regionData?.name ?? '';
 
   if (error?.response?.status === 404)
     return (
@@ -35,14 +36,14 @@ function TeamsByRegion() {
       <div className="Teams-by-region__title">
         <GoBack path="/" />
         <Title
-          text={`Mis equipos / ${regionId}`}
+          text={`Mis equipos / ${regionName}`}
           className="Teams-by-region__text"
         />
       </div>
-      <Actions />
+      <Actions regionName={regionName} />
       <TeamsList
         refetch={refetch}
-        regionId={regionId}
+        regionId={regionName}
         data={data}
         loading={isLoadingRegion || isLoading}
         route={TeamDetailPrevRouteEnum.Regions}

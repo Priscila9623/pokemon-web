@@ -103,10 +103,10 @@ function TeamDetail() {
 
     addTeam({
       ...currentTeam,
-      regionName: regionId!,
-      regionUser: `${regionId}_${user?.uid}`,
+      regionName: regionName!,
+      regionUser: `${regionName}_${user?.uid}`,
       userId: user?.uid!,
-      token: `${user?.uid.slice(0, 5)}-${regionId!}-${nanoid(4)}`,
+      token: `${user?.uid.slice(0, 3)}-${regionName!}-${nanoid(5)}`,
     });
   };
 
