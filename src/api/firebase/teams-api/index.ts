@@ -99,7 +99,7 @@ export const useGetTeamByToken = (token: string) => {
 
       const team = Object.values(snap.val())[0] as unknown as TeamByTokenData;
 
-      return { name: team.name, pokemons: team.pokemons };
+      return { name: team.name, pokemons: team.pokemons, userId: team.userId };
     },
     {
       enabled: Boolean(token),

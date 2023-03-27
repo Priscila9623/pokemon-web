@@ -17,4 +17,28 @@
       padding-right: 32px;
     }
   }
+  .ant-alert-content {
+    font-family: $quick-sand;
+  }
+
+  .ant-alert-message {
+    font-weight: 700 !important;
+  }
+
+  .ant-alert-action {
+    & > a {
+      .ant-btn {
+        font-family: $quick-sand !important;
+      }
+    }
+  }
+
+  .ant-alert {
+    align-self: center;
+    margin-top: 30px;
+    width: 60%;
+    @media (max-width: $breakpoint-md) {
+      width: 100%;
+    }
+  }
 }

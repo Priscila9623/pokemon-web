@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
+import { Alert, Button } from 'antd';
 import { nanoid } from 'nanoid';
 import {
+  Link,
   useLocation,
   useNavigate,
   useParams,
@@ -49,6 +51,7 @@ function TeamDetail() {
     () => currentTeam.pokemons.map((item) => item.name),
     [currentTeamCount]
   );
+  const isTeamOwner = token && user?.uid === team?.userId;
 
   const navigateToPreviousRoute = () => {
     const defaultRoute = TeamDetailPrevRouteEnum.Regions;
@@ -166,6 +169,20 @@ function TeamDetail() {
     <div className="Team-detail">
       <Title text={`Equipo en la región ${regionName!}`} />
       <div className="Team-detail__content">
+        {isTeamOwner && (
+          <Alert
+            message="Parece que este equipo te pertenece"
+            description="Este equipo se encuentra en tu lista, si es intencional puedes crear un nuevo equipo con la misma información."
+            type="warning"
+            showIcon
+            action={
+              <Link to={`/region/${regionName}`}>
+                <Button size="small">Ir a mis equipos</Button>
+              </Link>
+            }
+            closable
+          />
+        )}
         <Steps
           items={steps}
           onSave={onSaveTeam}
