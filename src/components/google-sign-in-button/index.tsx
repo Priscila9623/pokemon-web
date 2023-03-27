@@ -1,14 +1,19 @@
 import React from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import googleLogo from '@assets/google-logo.svg';
 import { signInWithGoogle } from '@services/firebase/auth';
 
 import './style.scss';
 
 function GoogleSignInButton() {
-  const onClick = () => {
+  const navigate = useNavigate();
+
+  const onClick = async () => {
     try {
-      signInWithGoogle();
+      await signInWithGoogle();
+      navigate('/', { replace: true });
     } catch (error) {
       // error happened
     }
